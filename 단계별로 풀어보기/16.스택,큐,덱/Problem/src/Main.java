@@ -3,6 +3,169 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob24511() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int N = Integer.parseInt(br.readLine());
+        int A[] = new int[N];
+        Deque<Integer> B = new ArrayDeque<>();
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        for (int i = 0; i < N; i++) {
+            A[i] = Integer.parseInt(st.nextToken());
+        }
+
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            int tmp = Integer.parseInt(st.nextToken());
+            if(A[i] == 0){
+                B.add(tmp);
+            }
+        }
+
+        int M = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < M; i++) {
+            B.addFirst(Integer.parseInt(st.nextToken()));
+            sb.append(B.pollLast()).append(" ");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob2346() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
+
+        int N = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int input[] = new int[N];
+        for (int i = 0; i < N; i++) {
+            input[i] = Integer.parseInt(st.nextToken());
+        }
+
+        Deque<Integer> deque = new ArrayDeque<>();
+        for (int i = 0; i < N; i++) {
+            deque.add(i+1);
+        }
+        for (int i = 0; i < N; i++) {
+            int tmp = input[deque.peekFirst()-1];
+            sb.append(deque.pollFirst()).append(" ");
+            if(deque.isEmpty()){
+                break;
+            }
+            if (tmp > 0) {
+                for (int j = 1; j < tmp; j++) {
+                    deque.addLast(deque.pollFirst());
+                }
+            }
+            else {
+                for (int j = tmp; j < 0; j++) {
+                    deque.addFirst(deque.pollLast());
+                }
+            }
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob28279() throws  IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int N = Integer.parseInt(br.readLine());
+        Deque<Integer> deque = new ArrayDeque<>();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int sel = Integer.parseInt(st.nextToken());
+            switch (sel){
+                case 1:
+                    deque.addFirst(Integer.valueOf(st.nextToken()));
+                    break;
+                case 2:
+                    deque.addLast(Integer.valueOf(st.nextToken()));
+                    break;
+                case 3:
+                    sb.append(deque.isEmpty() ? -1 : deque.pollFirst()).append("\n");
+                    break;
+                case 4:
+                    sb.append(deque.isEmpty() ? -1 : deque.pollLast()).append("\n");
+                    break;
+                case 5:
+                    sb.append(deque.size()).append("\n");
+                    break;
+                case 6:
+                    sb.append(deque.isEmpty() ? 1 : 0).append("\n");
+                    break;
+                case 7:
+                    sb.append(deque.isEmpty() ? -1 : deque.peekFirst()).append("\n");
+                    break;
+                case 8:
+                    sb.append(deque.isEmpty() ? -1 : deque.peekLast()).append("\n");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob11866() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        Queue<Integer> q = new LinkedList();
+        ArrayList<Integer> res = new ArrayList<>();
+
+        for (int i = 1; i <= N; i++) {
+            q.add(i);
+        }
+
+        int cur = 1;
+        while (!q.isEmpty()) {
+            if(cur == K){
+                res.add(q.poll());
+                cur = 1;
+            }
+            else {
+                q.add(q.poll());
+                cur++;
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("<");
+
+        for (int i = 0; i < res.size(); i++) {
+            sb.append(res.get(i));
+            if(i == res.size()-1){
+                sb.append(">");
+            }
+            else {
+                sb.append(", ");
+            }
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob2164() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int N = Integer.parseInt(br.readLine());
