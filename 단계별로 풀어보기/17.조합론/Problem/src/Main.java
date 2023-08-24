@@ -2,7 +2,22 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        
+
+    }
+
+    private static void prob10872() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(br.readLine());
+        int res = 1;
+        for (int i = 1; i <= N; i++) {
+            res *= i;
+        }
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob24723() throws IOException {
