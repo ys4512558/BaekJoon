@@ -1,9 +1,39 @@
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
 
+    static int[][] res;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
+        res = new int[N+1][K+1];
+
+        sb.append(dynamic(N, K));
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
+
+    public static int dynamic(int N, int K){
+        if(res[N][K] > 0){
+            return res[N][K];
+        }
+
+        if (N == K || K == 0) {
+            res[N][K] = 1;
+            return res[N][K];
+        }
+        res[N][K] = dynamic(N-1, K-1) + dynamic(N-1, K);
+        return res[N][K];
+    }
+
 
     private static void prob10872() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
