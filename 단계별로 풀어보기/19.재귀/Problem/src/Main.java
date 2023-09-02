@@ -1,8 +1,37 @@
 import java.io.*;
 
 public class Main {
+    static int cnt;
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob25501() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
+
+        int T = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < T; i++) {
+            String input = br.readLine();
+            cnt = 0;
+            int res = recur25501(input, 0, input.length()-1);
+            sb.append(res).append(" ").append(cnt).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    public static int recur25501(String str, int l, int r) {
+        cnt++;
+        if(l >= r)
+            return 1;
+        else if (str.charAt(l) != str.charAt(r))
+            return 0;
+        else
+            return recur25501(str, l+1, r-1);
     }
 
     private static void prob10870() throws IOException {
