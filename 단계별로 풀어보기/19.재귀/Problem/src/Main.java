@@ -1,9 +1,75 @@
 import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
-    static int cnt;
+    static int cnt; //25501
+
+    static int K; //24060
+    static int res = -1; //24060
+    static int tmp[]; //24060
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob24060() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
+        int arr[] = new int[N];
+
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+        tmp = new int[N];
+        mergeSort(arr, 0, arr.length-1);
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    public static void mergeSort(int arr[], int left, int right) {
+        if(left < right){
+            int mid = (left+right)/2;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid+1, right);
+            merge(arr, left, mid, right);
+        }
+    }
+
+    public static void merge(int[] arr, int left, int mid, int right) {
+        int part1 = left; //첫번째 배열의 첫번째 인덱스
+        int part2 = mid+1; //두번째 배열의 첫번째 인덱스
+        int idx = left; //실제 배열 인덱스
+        //첫번째 배열, 두번째 배열이 각각 해당 배열의 범위 안에 있는 동안 반복 (분할된 배열)
+        while (part1 <= mid && part2 <= right){
+            if(arr[part1] <= arr[part2]){
+                tmp[idx++] = arr[part1++];
+            }
+            else {
+                tmp[idx++] = arr[part2++];
+            }
+        }
+        //왼쪽 배열이 남은 경우
+        while (part1 <= mid){
+            tmp[idx++] = arr[part1++];
+        }
+        while (part2 <= right){
+            tmp[idx++] = arr[part2++];
+        }
+        part1 = left;
+        idx = left;
+        while (part1 <= right) {
+            if (--K == 0){
+                res = tmp[idx];
+                break;
+            }
+            arr[part1++] = tmp[idx++];
+        }
     }
 
     private static void prob25501() throws IOException {
