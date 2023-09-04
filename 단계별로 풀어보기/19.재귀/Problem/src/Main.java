@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -7,9 +8,55 @@ public class Main {
     static int K; //24060
     static int res = -1; //24060
     static int tmp[]; //24060
+
+
     public static void main(String[] args) throws IOException {
 
     }
+
+    private static void prob4779() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
+
+        String input = "";
+        while ((input = br.readLine()) != null){
+            int N = Integer.parseInt(input);
+            int size = (int) Math.pow(3, N);
+            char chars[] = new char[size];
+            Arrays.fill(chars,'-');
+
+            recur4779(chars, 0, chars.length-1, false);
+            for(char c : chars){
+                sb.append(c);
+            }
+            sb.append("\n");
+        }
+
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void recur4779(char[] chars, int left, int right, boolean check) {
+        if(left < right && !check){
+            int idx = (right-left) / 3;
+            int mid1 = idx + left; //3등분
+            int mid2 = idx + mid1 + 1;
+
+            recur4779(chars, left, mid1, false);
+            recur4779(chars, mid1+1, mid2, true); //시작값 + mid
+            recur4779(chars, mid2+1, right, false);
+            merge4779(chars, mid1, mid2);
+        }
+    }
+
+    private static void merge4779(char[] chars, int mid1, int mid2) {
+        for (int i = mid1+1; i <= mid2; i++) {
+            chars[i] = ' ';
+        }
+    }
+
 
     private static void prob24060() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
