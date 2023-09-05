@@ -4,15 +4,51 @@ import java.util.StringTokenizer;
 
 public class Main {
     static int cnt; //25501
-
     static int K; //24060
     static int res = -1; //24060
     static int tmp[]; //24060
-
+    static char star[][]; //2447
 
     public static void main(String[] args) throws IOException {
 
     }
+
+    private static void prob2447() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
+
+        int N = Integer.parseInt(br.readLine());
+        star = new char[N][N];
+
+        recur2447(0, 0, N, true);
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                sb.append(star[i][j]);
+            }
+            sb.append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void recur2447(int x, int y, int N, boolean B) {
+        if(N==1){
+            star[y][x] = B ? '*' : ' ';
+            return;
+        }
+
+        int cnt = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                cnt++;
+                recur2447(x + j * (N/3) , y + i * (N/3), N/3, B & (cnt == 5 ? false : true));
+            }
+        }
+    }
+
 
     private static void prob4779() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
