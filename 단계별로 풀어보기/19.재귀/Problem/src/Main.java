@@ -3,13 +3,40 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int cnt; //25501
+    static int cnt; //25501, 11729
     static int K; //24060
     static int res = -1; //24060
     static int tmp[]; //24060
     static char star[][]; //2447
-
+    static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob11729() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int N = Integer.parseInt(br.readLine());
+        recur11729(N, 1,2, 3);
+        sb.insert(0, cnt + "\n");
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void recur11729(int N, int start, int mid, int to){
+        if(N==1){
+            cnt++;
+            sb.append(start).append(" ").append(to).append("\n");
+            return;
+        }
+
+        recur11729(N-1, start, to, mid);
+        cnt++;
+        sb.append(start).append(" ").append(to).append("\n");
+
+        recur11729(N-1, mid, start, to);
 
     }
 
