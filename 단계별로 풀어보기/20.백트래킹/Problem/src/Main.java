@@ -12,6 +12,34 @@ public class Main {
 
     }
 
+    private static void prob15650() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        arr = new int[M];
+
+        dfs15650(N, M,1, 0);
+
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void dfs15650(int N, int M, int at, int depth){
+        if (M == depth) {
+            for (int i : arr)
+                sb.append(i).append(" ");
+            sb.append("\n");
+            return;
+        }
+
+        for (int i = at; i <= N; i++) {
+            arr[depth] = i;
+            dfs15650(N, M, i+1, depth + 1);
+        }
+    }
+
     private static void prob15649() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
