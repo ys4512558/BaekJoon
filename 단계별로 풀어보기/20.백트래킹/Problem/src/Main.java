@@ -12,6 +12,60 @@ public class Main {
 
     }
 
+    private static void prob15652() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        arr = new int[M];
+        dfs15652(N, M, 0, 0);
+
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void dfs15652(int N, int M, int depth, int pre){
+        if(M == depth){
+            for(int i : arr){
+                sb.append(i).append(" ");
+            }
+            sb.append("\n");
+            return;
+        }
+
+        for (int i = pre; i < N; i++) {
+            arr[depth] = i+1;
+            dfs15652(N, M, depth+1, i);
+        }
+    }
+
+    private static void prob15651() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        arr = new int[M];
+        dfs15651(N, M, 0);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void dfs15651(int N, int M, int depth){
+        if (M == depth) {
+            for (int i : arr){
+                sb.append(i).append(" ");
+            }
+            sb.append("\n");
+            return;
+        }
+        for (int i = 0; i < N; i++) {
+            arr[depth] = i + 1;
+            dfs15651(N, M, depth+1);
+        }
+    }
+
     private static void prob15650() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
