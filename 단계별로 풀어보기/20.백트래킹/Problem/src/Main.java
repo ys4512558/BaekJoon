@@ -8,10 +8,111 @@ public class Main {
 
     static int arr[];
     static boolean visit[];
+    static int cnt = 0;
+
+    static int sudoku[][] = new int[9][9];
     public static void main(String[] args) throws IOException {
 
     }
 
+    private static void prob2580() throws IOException {
+        for (int i = 0; i < 9; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < 9; j++) {
+                sudoku[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        dfs2580(0, 0);
+    }
+
+    private static void dfs2580(int x, int y) throws IOException {
+        if(x == 9){
+            dfs2580(0, y+1);
+            return;
+        }
+
+        if(y == 9){
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    sb.append(sudoku[i][j]).append(" ");
+                }
+                sb.append("\n");
+            }
+            bw.write(sb.toString());
+            bw.flush();
+            bw.close();
+            //여러 값이 나올 때 바로 종료하기 위함.
+            System.exit(0);
+        }
+
+        if(sudoku[y][x] == 0){
+            for (int i = 1; i <= 9; i++) {
+                if (possibility(x, y, i)) {
+                    sudoku[y][x] = i;
+                    dfs2580(x+1, y);
+                }
+            }
+            sudoku[y][x] = 0;
+            return;
+        }
+
+        dfs2580(x+1, y);
+    }
+    private static boolean possibility(int x, int y, int value){
+        for (int i = 0; i < 9; i++) {
+            if(x != i && sudoku[y][i] == value)
+                return false;
+        }
+        for (int i = 0; i < 9; i++) {
+            if(y != i && sudoku[i][x] == value)
+                return false;
+        }
+
+        int row = (y / 3) * 3;
+        int col = (x / 3) * 3;
+        for (int i = row; i < row + 3; i++) {
+            for (int j = col; j < col + 3; j++) {
+                if(sudoku[i][j] == value)
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    private static void prob9663() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        arr = new int[N];
+        dfs9663(N, 0);
+        sb.append(cnt);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void dfs9663(int N, int depth){
+        if (depth == N) {
+            cnt++;
+            return;
+        }
+        for (int i = 0; i < N; i++) {
+            arr[depth] = i;
+            if (possibility(depth)) {
+                dfs9663(N, depth + 1);
+            }
+        }
+    }
+
+    private static boolean possibility(int depth) {
+        for (int i = 0; i < depth; i++) {
+            if(arr[depth] == arr[i])
+                return false;
+            else if(Math.abs(depth - i) == Math.abs(arr[depth] - arr[i]))
+                return false;
+        }
+        return true;
+    }
     private static void prob15652() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
