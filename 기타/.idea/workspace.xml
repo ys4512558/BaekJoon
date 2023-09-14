@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="952a8618-4fc5-462e-b027-76bf4ce495d7" name="Changes" comment="" />
+    <list default="true" id="952a8618-4fc5-462e-b027-76bf4ce495d7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problem/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Problem/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../단계별로 풀어보기/19.재귀/Problem/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../단계별로 풀어보기/19.재귀/Problem/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../단계별로 풀어보기/20.백트래킹/Problem/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../단계별로 풀어보기/20.백트래킹/Problem/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
   <component name="ProjectId" id="2TmPlEXLIX6iSG90DjKCBePeeW5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -14,9 +25,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/ys451/OneDrive/바탕 화면/코딩테스트/백준/기타",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/ys451/OneDrive/바탕 화면/코딩테스트/백준/기타/Problem",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -32,10 +45,37 @@
       <option name="presentableId" value="Default" />
       <updated>1691645431512</updated>
       <workItem from="1691645432489" duration="22000" />
+      <workItem from="1694679384619" duration="94000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Problem/src/Main.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Problem/src/Main.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Problem/src/Main.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Problem/src/Main.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
