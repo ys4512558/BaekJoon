@@ -24,9 +24,40 @@ public class Main {
     static int start_Status = 0;
     static int link_Status = 0;
 
+    static int chess[][];
+
 
     public static void main(String[] args) throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        chess = new int[N][N];
+    }
 
+    private static void dfs9663_2(int N, int count){
+        if(N == count){
+            cnt++;
+            return;
+        }
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if(chess[i][j] != 1 && check(N, j, i)){
+                    chess[i][j] = 1;
+                    dfs9663_2(N, count+1);
+                    chess[i][j] = 0;
+                }
+            }
+        }
+
+    }
+    private static boolean check(int N, int x, int y) {
+        for (int i = 0; i < N; i++) {
+            if(chess[i][x] == 1)
+                return false;
+            if(chess[y][i] == 1)
+                return false;
+            if(chess[Math.abs(i-y)][Math.abs(i-x)]==1)
+                return false;
+        }
+        return true;
     }
 
     private static void prob14889() throws IOException {
