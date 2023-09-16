@@ -10,7 +10,7 @@ public class Main {
     static char star[][]; //2447
     static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
-
+        prob11729();
     }
 
     private static void prob11729() throws IOException {

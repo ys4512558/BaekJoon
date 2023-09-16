@@ -8,40 +8,8 @@ public class Main {
 
     static int arr[];
     static boolean visit[];
-    static int cnt = 0;
-
     public static void main(String[] args) throws IOException {
-        int N = Integer.parseInt(br.readLine());
 
-        arr = new int[N];
-        dfs9663(N, 0);
-        sb.append(cnt);
-        bw.write(sb.toString());
-        bw.flush();
-        bw.close();
-    }
-
-    private static void dfs9663(int N, int depth){
-        if (depth == N) {
-            cnt++;
-            return;
-        }
-        for (int i = 0; i < N; i++) {
-            arr[depth] = i;
-            if (possibility(depth)) {
-                dfs9663(N, depth + 1);
-            }
-        }
-    }
-
-    private static boolean possibility(int depth) {
-        for (int i = 0; i < depth; i++) {
-            if(arr[depth] == arr[i])
-                return false;
-            else if(Math.abs(depth - i) == Math.abs(arr[depth] - arr[i]))
-                return false;
-        }
-        return true;
     }
 
     private static void prob15652() throws IOException {
