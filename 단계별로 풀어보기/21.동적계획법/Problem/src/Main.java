@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,6 +16,31 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob1912() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int arr[] = new int[N];
+        int sum[] = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+        int max = sum[0] = arr[0];
+
+        for (int i = 1; i < N; i++) {
+            sum[i] = Math.max(sum[i - 1] + arr[i], arr[i]);
+            max = Math.max(max, sum[i]);
+        }
+
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob1463_2() throws IOException {
         int N = Integer.parseInt(br.readLine());
         count = new int[N+1];
         Arrays.fill(count, 100000);
