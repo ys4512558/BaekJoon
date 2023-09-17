@@ -14,9 +14,54 @@ public class Main {
 
     static int count[];
 
+    static int cost[][];
+    static int arr[][];
 
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob1149() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        arr = new int[N][3];
+        cost = new int[N][3];
+
+        StringTokenizer st;
+        for(int i = 0; i < N; i++) {
+
+            st = new StringTokenizer(br.readLine(), " ");
+
+            arr[i][0] = Integer.parseInt(st.nextToken());
+            arr[i][1] = Integer.parseInt(st.nextToken());
+            arr[i][2] = Integer.parseInt(st.nextToken());
+        }
+
+        for (int i = 0; i < 3; i++) {
+            cost[0][i] = arr[0][i];
+        }
+        int res = Math.min(dp1149(N- 1, 0), Math.min(dp1149(N - 1, 1), dp1149(N - 1, 2)));
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    static int dp1149(int N, int color) {
+
+        if(cost[N][color] == 0) {
+            if(color == 0) {
+                cost[N][0] = Math.min(dp1149(N - 1, 1), dp1149(N - 1, 2)) + arr[N][0];
+            }
+            else if(color == 1) {
+                cost[N][1] = Math.min(dp1149(N - 1, 0), dp1149(N - 1, 2)) + arr[N][1];
+            }
+            else {
+                cost[N][2] = Math.min(dp1149(N - 1, 0), dp1149(N - 1, 1)) + arr[N][2];
+            }
+        }
+        return cost[N][color];
     }
 
     private static void prob1912() throws IOException {
