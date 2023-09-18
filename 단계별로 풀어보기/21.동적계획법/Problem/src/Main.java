@@ -14,9 +14,95 @@ public class Main {
 
     static int count[];
 
+    static long w[][][];
 
+    static int arr[];
+
+    static int array[];
+    static int score[];
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob2579() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        array = new int[N+1];
+        score = new int[N+1];
+
+        for (int i = 0; i < N; i++) {
+            array[i+1] = Integer.parseInt(br.readLine());
+        }
+        score[1] = array[1];
+        if (N >= 2) {
+            score[2] = array[1] + array[2];
+        }
+
+        for (int i = 3; i <= N; i++) {
+            score[i] = Math.max(score[i - 2], score[i - 3] + array[i - 1]) + array[i];
+        }
+
+        sb.append(score[N]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob1904() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        arr = new int[1000001];
+        arr[1] = 1;
+        arr[2] = 2;
+        arr[3] = 3;
+
+        sb.append(dp1904(N));
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int dp1904(int N){
+        if(arr[N] == 0)
+            arr[N] = (dp1904(N-1)+dp1904(N-2)) % 15746;
+        return arr[N];
+    }
+
+    private static void prob9184() throws IOException {
+        w = new long[51][51][51];
+        w[0][0][0] = 1;
+
+        while (true) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            int c = Integer.parseInt(st.nextToken());
+            if (a == -1 && b == -1 && c == -1) {
+                break;
+            }
+            sb = new StringBuilder();
+            sb.append("w("+a+", "+b+", "+c+") = " + recur9184(a,b,c)).append("\n");
+            bw.write(sb.toString());
+            bw.flush();
+        }
+        bw.close();
+    }
+    private static long recur9184(int a, int b, int c){
+        if(a <= 0 || b <= 0 || c <= 0)
+            return w[0][0][0];
+        if(w[a][b][c] != 0)
+            return w[a][b][c];
+        if (a > 20 || b > 20 || c > 20)
+            return w[a][b][c] = recur9184(20, 20, 20);
+
+        if (a < b && b < c)
+            return w[a][b][c] = recur9184(a, b, c-1)+
+                    recur9184(a,b-1, c-1)-
+                    recur9184(a, b-1, c);
+
+        return w[a][b][c] = recur9184(a - 1, b, c) +
+                recur9184(a - 1, b - 1, c) +
+                recur9184(a - 1, b, c - 1) -
+                recur9184(a - 1, b - 1, c - 1);
     }
 
     private static void prob1912() throws IOException {
