@@ -20,8 +20,57 @@ public class Main {
 
     static int array[];
     static int score[];
+
+    static long ary[];
+
+    static int max;
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob1912_2() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        arr = new int[N];
+        score = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+        max = score[0] = arr[0];
+        dp1912_2(N-1);
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int dp1912_2(int N){
+        if(N == 0)
+            return score[N];
+        if(score[N] == 0){
+            score[N] = Math.max(arr[N], arr[N]+dp1912_2(N-1));
+            max = Math.max(max, score[N]);
+            return score[N];
+        }
+        return score[N];
+    }
+
+    private static void prob9461() throws IOException {
+        int T = Integer.parseInt(br.readLine());
+        ary = new long[101];
+        ary[1] = ary[2] = ary[3] = 1;
+        for (int i = 0; i < T; i++) {
+            sb.append(dp9461(Integer.parseInt(br.readLine()))).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static long dp9461(int N){
+        if(ary[N] == 0)
+            return ary[N] = dp9461(N-2)+dp9461(N-3);
+        return ary[N];
     }
 
     private static void prob2579() throws IOException {
