@@ -28,6 +28,29 @@ public class Main {
 
     }
 
+    private static void prob2156() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        arr = new int[N];
+        score = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+        if(N >= 1)
+            score[0] = arr[0];
+        if(N >= 2)
+            score[1] = arr[0]+arr[1];
+        if(N >= 3)
+            score[2] = Math.max(score[1], Math.max(score[0] + arr[2], arr[1] + arr[2]));
+
+        for (int i = 3; i < N; i++) {
+            score[i] = Math.max(score[i-1], Math.max(score[i-2] + arr[i], score[i-3]+arr[i-1] + arr[i]));
+        }
+        sb.append(score[N-1]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob1912_2() throws IOException {
         int N = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
