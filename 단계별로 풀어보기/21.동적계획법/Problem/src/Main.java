@@ -24,8 +24,41 @@ public class Main {
     static long ary[];
 
     static int max;
-    public static void main(String[] args) throws IOException {
 
+    public static void main(String[] args) throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        arr = new int[N];
+        int count1[] = new int[N+1];
+        int count2[] = new int[N+1];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i=0; i<N; i++){
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        int result = 0;
+
+        for (int i = 0; i < N; i++) {
+            count1[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if(arr[i]>arr[j] && count1[j]>=count1[i])
+                    count1[i] = count1[j]+1;
+            }
+        }
+        for (int i = N-1; i >= 0; i--) {
+            count2[i] = 1;
+            for (int j = N-1; j > i; j--) {
+                if(arr[i]>arr[j] && count2[j]>=count2[i])
+                    count2[i]=count2[j]+1;
+            }
+        }
+        for (int i = 0; i < N; i++) {
+            result = Math.max(count1[i] + count2[i] - 1, result);
+        }
+
+        sb.append(result);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob2156() throws IOException {
