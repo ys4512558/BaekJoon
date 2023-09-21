@@ -25,7 +25,215 @@ public class Main {
 
     static int max;
 
+    static int[][] rgb;
+    static int[][] cost;
+    static int[][] sum;
+
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob1932_2() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        cost = new int[N][N];
+        sum = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < i+1; j++) {
+                cost[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+        max = sum[0][0] = cost[0][0];
+        for (int i = 0; i < N; i++) {
+            dp1932(N-1, i);
+        }
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int dp1932(int row, int col){
+        if(row == 0)
+            return sum[row][col];
+        if(sum[row][col] == 0){
+            if(col == 0)
+                sum[row][col] = dp1932(row-1, col)+cost[row][col];
+            else if (col == row)
+                sum[row][col] = dp1932(row-1, col-1)+cost[row][col];
+            else
+                sum[row][col] =
+                        Math.max(dp1932(row-1, col-1), dp1932(row-1, col))
+                        +cost[row][col];
+        }
+        max = Math.max(sum[row][col], max);
+        return sum[row][col];
+    }
+
+    /**
+     * 0921 : 1931번 Bottom-Up 방식
+     * @throws IOException
+     */
+    private static void prob1932() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        cost = new int[N][N];
+        sum = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < i+1; j++) {
+                cost[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        max = sum[0][0] = cost[0][0];
+        for (int i = 1; i < N; i++) {
+            for (int j = 0; j < i+1; j++) {
+                if(j == 0) //삼각형의 왼쪽 라인
+                    sum[i][j] = sum[i-1][j]+cost[i][j];
+                else if(j == i) //삼각형의 오른쪽 라인
+                    sum[i][j] = sum[i-1][j-1]+cost[i][j];
+                else //가운데
+                    sum[i][j] = Math.max(sum[i-1][j-1], sum[i-1][j])+cost[i][j];
+                max = Math.max(max, sum[i][j]);
+            }
+        }
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    /**
+     * 0921 : 1149번 Top-Down 방식
+     * @throws IOException
+     */
+    private static void prob1149_2() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        rgb = new int[N][N];
+        cost = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < 3; j++) {
+                rgb[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+        cost[0][0] = rgb[0][0];
+        cost[0][1] = rgb[0][1];
+        cost[0][2] = rgb[0][2];
+        dp1149(N-1, 0);
+        dp1149(N-1, 1);
+        dp1149(N-1, 2);
+
+        int min = Math.min(Math.min(cost[N - 1][0], cost[N - 1][1]), cost[N-1][2]);
+        sb.append(min);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int dp1149(int N, int color){
+        if(cost[N][color] == 0){
+            if(color == 0)
+                cost[N][color] = Math.min(dp1149(N-1, 1), dp1149(N-1, 2))+rgb[N][color];
+            else if (color == 1)
+                cost[N][color] = Math.min(dp1149(N-1, 0), dp1149(N-1, 2))+rgb[N][color];
+            else
+                cost[N][color] = Math.min(dp1149(N-1, 0), dp1149(N-1, 1))+rgb[N][color];
+        }
+        return cost[N][color];
+    }
+
+    /**
+     * 0921 : 1149번 Bottom-Up 방식
+     * @throws IOException
+     */
+    private static void prob1149() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        rgb = new int[N][N];
+        cost = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < 3; j++) {
+                rgb[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+        cost[0][0] = rgb[0][0];
+        cost[0][1] = rgb[0][1];
+        cost[0][2] = rgb[0][2];
+        int min = 0;
+
+        for (int i = 1; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if(j == 0)
+                    cost[i][j] = Math.min(cost[i-1][1], cost[i-1][2])+rgb[i][j];
+                else if(j == 1)
+                    cost[i][j] = Math.min(cost[i-1][0], cost[i-1][2])+rgb[i][j];
+                else
+                    cost[i][j] = Math.min(cost[i-1][0], cost[i-1][1])+rgb[i][j];
+            }
+        }
+        min = Math.min(Math.min(cost[N - 1][0], cost[N - 1][1]), cost[N-1][2]);
+        sb.append(min);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    /**
+     * 0921 : Top-Down 방식
+     * @throws IOException
+     */
+
+    private static void prob1912_4() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        arr = new int[N];
+        score = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+        max = score[0] = arr[0];
+        dp1912_4(N-1);
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int dp1912_4(int N){
+        if(N == 0)
+            return score[N];
+        if(score[N] == 0){
+            score[N] = Math.max(dp1912_4(N-1)+arr[N], arr[N]);
+        }
+        max = Math.max(score[N], max);
+        return score[N];
+    }
+    /**
+     * 23-09-21 : Bottom-Up 방식
+     * @throws IOException
+     */
+    private static void prob1912_3() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        arr = new int[N];
+        score = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+        max = score[0] = arr[0];
+        for (int i = 1; i < N; i++) {
+            score[i] = Math.max(score[i-1]+arr[i], arr[i]);
+            max = Math.max(score[i], max);
+        }
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+
+    private static void prob11054() throws IOException {
         int N = Integer.parseInt(br.readLine());
         arr = new int[N];
         int count1[] = new int[N+1];
