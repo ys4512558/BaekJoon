@@ -9,6 +9,39 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
+        int arr[] = new int[N+1];
+        int sum1[] = new int[N+1]; //전체 누적합
+        int sum2[] = new int[N-M+1]; //M개 이상 됐을때 이전의 값들의 누적합
+
+        int cnt = 1; //누적합 요소 개수
+        int idx = 0; //M개 이상 누적합 한 후, M개씩 끊어서 저장한 sum2의 인덱스
+        int max = -10000001;
+        sum1[0] = 0;
+        /**
+         * i까지의 누적합 - 0~i-M까지의 누적합
+         */
+        st = new StringTokenizer(br.readLine());
+        for (int i = 1; i <= N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+            sum1[i] = sum1[i-1] + arr[i];
+            if(cnt >= M){
+                sum2[idx] = sum1[i] - sum1[i-M];
+                max = Math.max(max, sum2[idx]);
+                idx++;
+            }
+            cnt++;
+        }
+
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob2559() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
         int[] arr = new int[N];
         int[] sum = new int[N+1];
         st = new StringTokenizer(br.readLine());
