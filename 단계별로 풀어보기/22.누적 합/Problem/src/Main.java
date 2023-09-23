@@ -5,7 +5,32 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringBuilder sb = new StringBuilder();
+
+    static int cnt[][];
     public static void main(String[] args) throws IOException {
+        String str = br.readLine();
+        cnt = new int[str.length()+1][26];
+        for (int i = 1; i <= str.length(); i++) {
+            int idx = str.charAt(i-1)-'a';
+            cnt[idx][i] = cnt[idx][i-1]+1;
+        }
+
+        int N = Integer.parseInt(br.readLine());
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            String c = st.nextToken();
+            int idx = c.charAt(0)-'a';
+            int l = Integer.parseInt(st.nextToken());
+            int r = Integer.parseInt(st.nextToken());
+            int res = cnt[idx][r+1]-cnt[idx][l];
+            sb.append(res).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob2559() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
@@ -38,7 +63,7 @@ public class Main {
         bw.close();
     }
 
-    private static void prob2559() throws IOException {
+    private static void prob11659() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
