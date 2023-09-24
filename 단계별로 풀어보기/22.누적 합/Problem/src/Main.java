@@ -11,8 +11,13 @@ public class Main {
         String str = br.readLine();
         cnt = new int[str.length()+1][26];
         for (int i = 1; i <= str.length(); i++) {
-            int idx = str.charAt(i-1)-'a';
-            cnt[idx][i] = cnt[idx][i-1]+1;
+            int idx = str.charAt(i-1) - 'a';
+            for (int j = 0; j < 26; j++) {
+                if(idx == j)
+                    cnt[i][j] = cnt[i-1][j]+1;
+                else
+                    cnt[i][j] = cnt[i-1][j];
+            }
         }
 
         int N = Integer.parseInt(br.readLine());
@@ -22,7 +27,7 @@ public class Main {
             int idx = c.charAt(0)-'a';
             int l = Integer.parseInt(st.nextToken());
             int r = Integer.parseInt(st.nextToken());
-            int res = cnt[idx][r+1]-cnt[idx][l];
+            int res = cnt[r+1][idx]-cnt[l][idx];
             sb.append(res).append("\n");
         }
         bw.write(sb.toString());

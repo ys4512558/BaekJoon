@@ -30,7 +30,7 @@ public class Main {
     static int[][] sum;
 
     public static void main(String[] args) throws IOException {
-
+        prob1932_2();
     }
 
     private static void prob1932_2() throws IOException {
@@ -109,8 +109,8 @@ public class Main {
      */
     private static void prob1149_2() throws IOException {
         int N = Integer.parseInt(br.readLine());
-        rgb = new int[N][N];
-        cost = new int[N][N];
+        rgb = new int[N][3];
+        cost = new int[N][3];
         for (int i = 0; i < N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             for (int j = 0; j < 3; j++) {
@@ -149,8 +149,8 @@ public class Main {
      */
     private static void prob1149() throws IOException {
         int N = Integer.parseInt(br.readLine());
-        rgb = new int[N][N];
-        cost = new int[N][N];
+        rgb = new int[N][3];
+        cost = new int[N][3];
         for (int i = 0; i < N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             for (int j = 0; j < 3; j++) {
@@ -163,7 +163,7 @@ public class Main {
         int min = 0;
 
         for (int i = 1; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+            for (int j = 0; j < 3; j++) {
                 if(j == 0)
                     cost[i][j] = Math.min(cost[i-1][1], cost[i-1][2])+rgb[i][j];
                 else if(j == 1)
