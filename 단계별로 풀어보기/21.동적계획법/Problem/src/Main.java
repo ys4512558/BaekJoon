@@ -30,7 +30,7 @@ public class Main {
     static int[][] sum;
 
     public static void main(String[] args) throws IOException {
-        prob1932_2();
+
     }
 
     private static void prob1932_2() throws IOException {
