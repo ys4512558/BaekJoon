@@ -8,7 +8,24 @@ public class Main {
     static StringBuffer sb = new StringBuffer();
 
     public static void main(String[] args) throws IOException {
-
+        int N = Integer.parseInt(br.readLine());
+        int arr[] = new int[N];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+        Arrays.sort(arr);
+        int sums[] = new int[N];
+        int sum = 0;
+        sum = sums[0] = arr[0];
+        for (int i = 1; i < N; i++) {
+            sums[i] = sums[i-1]+arr[i];
+            sum += sums[i];
+        }
+        sb.append(sum);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob11047() throws IOException {
