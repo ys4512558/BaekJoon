@@ -8,6 +8,34 @@ public class Main {
     static StringBuffer sb = new StringBuffer();
 
     public static void main(String[] args) throws IOException {
+        prob1541();
+    }
+
+    private static void prob1541() throws IOException {
+        String str = br.readLine();
+        boolean check = str.charAt(0)=='-';
+        StringTokenizer st = new StringTokenizer(str, "-");
+        int res = 0;
+        int cnt = st.countTokens();
+        for (int i = 0; i < cnt; i++) {
+            StringTokenizer stk = new StringTokenizer(st.nextToken(), "+");
+            int cnt2 = stk.countTokens();
+            int tmp = 0;
+            for (int j = 0; j < cnt2; j++) {
+                tmp += Integer.parseInt(stk.nextToken());
+            }
+            if(i == 0 && !check)
+                res += tmp;
+            else
+                res -= tmp;
+        }
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob11399() throws IOException {
         int N = Integer.parseInt(br.readLine());
         int arr[] = new int[N];
         StringTokenizer st = new StringTokenizer(br.readLine());
