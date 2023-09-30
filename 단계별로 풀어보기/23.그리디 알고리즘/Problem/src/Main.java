@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -8,7 +9,64 @@ public class Main {
     static StringBuffer sb = new StringBuffer();
 
     public static void main(String[] args) throws IOException {
-        prob1541();
+
+    }
+
+    private static void prob1931() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int time[][] = new int[N][2];
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            time[i][0] = Integer.parseInt(st.nextToken());
+            time[i][1] = Integer.parseInt(st.nextToken());
+        }
+        Arrays.sort(time, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if(o1[1] == o2[1])
+                    return o1[0] - o2[0];
+                return o1[1] - o2[1];
+            }
+        });
+
+        int end = 0;
+        int cnt = 0;
+        for (int i = 0; i < N; i++) {
+            if(end <= time[i][0]) {
+                end = time[i][1];
+                cnt++;
+            }
+        }
+        sb.append(cnt);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob13305() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        long dist [] = new long[N-1];
+        long cost [] = new long[N];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < dist.length; i++) {
+            dist[i] = Long.parseLong(st.nextToken());
+        }
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < cost.length; i++) {
+            cost[i] = Long.parseLong(st.nextToken());
+        }
+        for (int i = 1; i < N; i++) {
+            if(cost[i] > cost[i-1])
+                cost[i] = cost[i-1];
+        }
+        long sum = 0;
+        for (int i = 0; i < dist.length; i++) {
+            sum += dist[i] * cost[i];
+        }
+        sb.append(sum);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob1541() throws IOException {
