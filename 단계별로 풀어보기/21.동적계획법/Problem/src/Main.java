@@ -544,15 +544,12 @@ public class Main {
 
     //Top-Down 방식
     private static int dp1463_2(int N) {
-        if (N == 1) {
-            return 0;
-        }
         if(N % 3 == 0)
-            count[N/3] = Math.min(count[N]+1, dp1463_2(count[N/3]));
+            count[N/3] = Math.min(count[N]+1, dp1463_2(N/3));
         if(N % 2 == 0)
-            count[N/2] = Math.min(count[N]+1, dp1463_2(count[N/2]));
+            count[N/2] = Math.min(count[N]+1, dp1463_2(N/2));
         if(N-1 > 0)
-            count[N-1] = Math.min(count[N]+1, dp1463_2(count[N-1]));
+            count[N-1] = Math.min(count[N]+1, dp1463_2(N-1));
 
         return count[N];
     }

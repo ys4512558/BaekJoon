@@ -8,6 +8,7 @@ public class Main {
 
     static int cnt[][];
     public static void main(String[] args) throws IOException {
+
     }
 
     private static void prob11660() throws IOException {
