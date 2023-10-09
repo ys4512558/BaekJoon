@@ -7,7 +7,36 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
-        prob30007();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < K; i++) {
+            int grade = Integer.parseInt(st.nextToken());
+            int P = (grade * 100) / N;
+            if(P >= 0 && P <= 4){
+                sb.append("1 ");
+            }else if(P <= 11){
+                sb.append("2 ");
+            } else if (P <= 23) {
+                sb.append("3 ");
+            } else if(P <= 40){
+                sb.append("4 ");
+            }else if(P <= 60){
+                sb.append("5 ");
+            }else if(P <= 77){
+                sb.append("6 ");
+            }else if(P <= 89){
+                sb.append("7 ");
+            }else if(P <= 96){
+                sb.append("8 ");
+            }else if(P <= 100) {
+                sb.append("9 ");
+            }
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob30007() throws IOException {
