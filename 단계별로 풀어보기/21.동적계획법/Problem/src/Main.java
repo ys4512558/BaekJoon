@@ -32,9 +32,24 @@ public class Main {
 
     static int[][] wire;
     static int dp[];
+    static int tile[];
 
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob11726() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        tile = new int[1001];
+        tile[1] = 1;
+        tile[2] = 2;
+        for (int i = 3; i <= N; i++) {
+            tile[i] = (tile[i-1]+tile[i-2])  % 10007;
+        }
+        sb.append(tile[N]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob12865() throws IOException {
