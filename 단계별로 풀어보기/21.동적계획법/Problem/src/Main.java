@@ -34,9 +34,39 @@ public class Main {
     static int dp[];
     static int tile[];
 
+    static long num[][];
     public static void main(String[] args) throws IOException {
 
     }
+    private static void prob10844() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        num = new long[N+1][10];
+
+        long res = 0;
+
+        for (int i = 1; i < 10; i++) {
+            res += dp10844(N, i);
+        }
+        sb.append(res % 1000000000).append("\n");
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static long dp10844(int len, int idx) {
+        if(idx < 0 || idx > 9){
+            return 0;
+        }
+        if(len == 1){
+            return num[len][idx] = 1;
+        }
+        if(num[len][idx] == 0){
+            num[len][idx] = (dp10844(len-1, idx-1) % 1000000000)
+                    + (dp10844(len-1, idx+1) % 1000000000);
+        }
+        return num[len][idx] % 1000000000;
+    }
+
 
     private static void prob11726() throws IOException {
         int N = Integer.parseInt(br.readLine());
