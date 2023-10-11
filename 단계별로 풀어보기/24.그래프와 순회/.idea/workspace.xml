@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b1e84e5-2436-4efd-825e-9557b3c5fd89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Problem/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problem/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problem/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,9 +12,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2WKxCXnwXS7Fz6Ij8PzWte9Oq34" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,7 +26,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/승철/Desktop/코딩테스트/백준/BaekJoon/단계별로 풀어보기/24.그래프와 순회",
+    "last_opened_file_path": "D:/BaekJoon/단계별로 풀어보기/24.그래프와 순회/Problem",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -41,6 +39,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696494950865</updated>
       <workItem from="1696494951807" duration="148000" />
+      <workItem from="1696994843507" duration="25000" />
     </task>
     <servers />
   </component>

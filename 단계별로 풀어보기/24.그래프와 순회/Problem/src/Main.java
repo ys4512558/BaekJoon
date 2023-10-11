@@ -7,12 +7,210 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
     static int visit[];
     static boolean visited[];
+    static boolean isVisit[][];
     static int cnt = 1;
-    static int res = 0;
+
+    static int count = 0;
     static Queue<Integer> queue;
+
+    static Queue<Integer[]> points;
+
+    final static int dx[] = {-1, 1, 0, 0};
+    final static int dy[] = {0, 0, -1, 1};
 
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob1012_dfs() throws IOException {
+        int T = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < T; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int M = Integer.parseInt(st.nextToken());
+            int N = Integer.parseInt(st.nextToken());
+            int K = Integer.parseInt(st.nextToken());
+            int map[][] = new int[N][M];
+            isVisit = new boolean[N][M];
+
+            for (int j = 0; j < K; j++) {
+                st = new StringTokenizer(br.readLine());
+                int X = Integer.parseInt(st.nextToken());
+                int Y = Integer.parseInt(st.nextToken());
+                map[Y][X] = 1;
+            }
+            int cnt = 0;
+            for (int j = 0; j < N; j++) {
+                for (int k = 0; k < M; k++) {
+                    if(!isVisit[j][k] && map[j][k] == 1) {
+                        dfs1012(map, j, k);
+                        cnt++;
+                    }
+                }
+            }
+            sb.append(cnt).append("\n");
+        }
+
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void dfs1012(int[][] map, int j, int k) {
+        isVisit[j][k] = true;
+        for (int i = 0; i < 4; i++) {
+            int curX = k + dx[i];
+            int curY = j + dy[i];
+            if (curX >= 0 && curY >= 0 && curY < map.length && curX < map[curY].length ) {
+                if(!isVisit[curY][curX] && map[curY][curX] == 1)
+                    dfs1012(map, curY, curX);
+            }
+        }
+    }
+
+
+    private static void prob2667_bfs() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int map[][] = new int[N][N];
+        isVisit = new boolean[N][N];
+        for (int i = 0; i < N; i++) {
+            String tmp = br.readLine();
+            for (int j = 0; j < N; j++) {
+                map[i][j] = Integer.parseInt(String.valueOf(tmp.toCharArray()[j]));
+            }
+        }
+        int total = 0;
+        ArrayList<Integer> house = new ArrayList<>();
+
+        points = new LinkedList<>();
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if(!isVisit[i][j] && map[i][j] == 1)
+                    bfs2667(map, i, j);
+                if(count != 0) {
+                    house.add(count);
+                    total++;
+                }
+                count = 0;
+            }
+        }
+        Collections.sort(house);
+        sb.append(total).append("\n");
+        for (int i = 0; i < house.size(); i++) {
+            sb.append(house.get(i)).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void bfs2667(int[][] map, int i, int j) {
+        Integer point[] = new Integer[]{i, j};
+        points.add(point);
+        isVisit[i][j] = true;
+
+        while (!points.isEmpty()) {
+            point = points.poll();
+            int y = point[0];
+            int x = point[1];
+
+            count++;
+            if (x - 1 >= 0 && !isVisit[y][x-1] && map[y][x-1] == 1) {
+                points.add(new Integer[]{y, x - 1});
+                isVisit[y][x-1] = true;
+            }
+            if (x + 1 < map[i].length && !isVisit[y][x+1] && map[y][x+1] == 1) {
+                points.add(new Integer[]{y, x + 1});
+                isVisit[y][x+1] = true;
+            }
+            if (y - 1 >= 0 && !isVisit[y-1][x] && map[y-1][x] == 1) {
+                points.add(new Integer[]{y - 1, x});
+                isVisit[y-1][x] = true;
+            }
+            if (y + 1 < map.length && !isVisit[y+1][x] && map[y+1][x] == 1) {
+                points.add(new Integer[]{y + 1, x});
+                isVisit[y+1][x] = true;
+            }
+        }
+    }
+
+    private static void prob2667_dfs() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int map[][] = new int[N][N];
+        isVisit = new boolean[N][N];
+        for (int i = 0; i < N; i++) {
+            String tmp = br.readLine();
+            for (int j = 0; j < N; j++) {
+                map[i][j] = Integer.parseInt(String.valueOf(tmp.toCharArray()[j]));
+            }
+        }
+        int total = 0;
+        ArrayList<Integer> house = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                dfs2667(map, i, j);
+                if(count != 0) {
+                    house.add(count);
+                    total++;
+                }
+                count = 0;
+            }
+        }
+        Collections.sort(house);
+        sb.append(total).append("\n");
+        for (int i = 0; i < house.size(); i++) {
+            sb.append(house.get(i)).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void dfs2667(int[][] map, int i, int j) {
+        if(!isVisit[i][j] && map[i][j] == 1){
+            isVisit[i][j] = true;
+            count++;
+            if(j-1 >= 0)
+                dfs2667(map, i, j-1);
+            if(j+1 < map[i].length)
+                dfs2667(map, i, j+1);
+            if(i-1 >= 0)
+                dfs2667(map, i-1, j);
+            if(i+1 < map.length)
+                dfs2667(map, i+1, j);
+        }
+    }
+
+
+    private static void prob1697() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        visit = new int[100001];
+        queue = new LinkedList<>();
+        queue.add(N);
+        while (!queue.isEmpty()) {
+            int q = queue.poll();
+            if(q == K){
+                break;
+            }
+            if(q-1 >= 0  && visit[q-1] == 0){
+                queue.add(q - 1);
+                visit[q-1] = visit[q]+1;
+            }
+            if(q+1 <= 100000 && visit[q+1] == 0 ){
+                queue.add(q + 1);
+                visit[q+1] = visit[q]+1;
+            }
+            if((q * 2) <= 100000 && visit[q*2] == 0){
+                queue.add(q * 2);
+                visit[q*2] = visit[q]+1;
+            }
+        }
+        sb.append(visit[K]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob1260() throws IOException {
