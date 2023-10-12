@@ -15,12 +15,61 @@ public class Main {
 
     static Queue<Integer[]> points;
 
+    static int cost[][];
+
+
     final static int dx[] = {-1, 1, 0, 0};
     final static int dy[] = {0, 0, -1, 1};
 
     public static void main(String[] args) throws IOException {
-
     }
+
+    private static void prob2178() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int map[][] = new int[N][M];
+        cost = new int[N][M];
+        isVisit = new boolean[N][M];
+        for (int i = 0; i < N; i++) {
+            String input = br.readLine();
+            for (int j = 0; j < M; j++) {
+                map[i][j] = Integer.parseInt(String.valueOf(input.charAt(j)));
+            }
+        }
+        points = new LinkedList<>();
+        bfs2178(map, 0, 0);
+        sb.append(cost[N - 1][M - 1]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void bfs2178(int[][] map, int i, int j) {
+        points.add(new Integer[]{i,j});
+        isVisit[i][j] = true;
+        cost[i][j] = 1;
+        while (!points.isEmpty()) {
+            Integer[] point = points.poll();
+            int Y = point[0];
+            int X = point[1];
+            if(Y == map.length-1 && X == map[Y].length-1){
+                break;
+            }
+            for (int k = 0; k < 4; k++) {
+                int curY = Y + dy[k];
+                int curX = X + dx[k];
+                if(curY >= 0 && curX >= 0 && curY < map.length && curX < map[curY].length){
+                    if(!isVisit[curY][curX] && map[curY][curX] == 1){
+                        isVisit[curY][curX] = true;
+                        points.add(new Integer[]{curY, curX});
+                        cost[curY][curX] = cost[Y][X]+1;
+                    }
+                }
+            }
+        }
+    }
+
 
     private static void prob1012_dfs() throws IOException {
         int T = Integer.parseInt(br.readLine());
