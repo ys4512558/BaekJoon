@@ -12,32 +12,51 @@ public class Main {
     static int cnt2 = 0; //prob24416
 
     static int f[]; //prob24416
-
     static int count[];
-
     static long w[][][];
-
     static int arr[];
-
     static int array[];
     static int score[];
-
     static long ary[];
-
     static int max;
-
     static int[][] rgb;
     static int[][] cost;
     static int[][] sum;
-
     static int[][] wire;
     static int dp[];
     static int tile[];
-
     static long num[][];
     public static void main(String[] args) throws IOException {
 
     }
+
+    private static void prob2156_2() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int wine[] = new int[N + 1];
+        int sum[] = new int[N + 1];
+        int max = 0;
+        for (int i = 1; i <= N; i++) {
+            wine[i] = Integer.parseInt(br.readLine());
+        }
+
+        if(N >= 1) {
+            sum[1] = wine[1];
+            max = sum[1];
+        }
+        if(N >= 2){
+            sum[2] = wine[1] + wine[2];
+            max = sum[2];
+        }
+        for (int i = 3; i <= N; i++) {
+            sum[i] = Math.max(sum[i - 1], Math.max(sum[i - 2], sum[i - 3] + wine[i - 1]) + wine[i]);
+            max = Math.max(sum[i], max);
+        }
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob10844() throws IOException {
         int N = Integer.parseInt(br.readLine());
         num = new long[N+1][10];
