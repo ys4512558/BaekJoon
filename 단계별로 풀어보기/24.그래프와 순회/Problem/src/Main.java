@@ -21,8 +21,59 @@ public class Main {
     final static int dx[] = {-1, 1, 0, 0};
     final static int dy[] = {0, 0, -1, 1};
 
+    static int moveX[] = {-2, -1, 1, 2, -2, -1, 1, 2};
+    static int moveY[] = {-1, -2, -2, -1, 1, 2, 2, 1};
+    static int isVisited[][];
     public static void main(String[] args) throws IOException {
     }
+
+    private static void prob7562_bfs() throws IOException {
+        int T = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < T; i++) {
+            int I = Integer.parseInt(br.readLine());
+            int visited[][] = new int[I][I];
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            Integer cur[] = new Integer[2];
+            cur[0] = Integer.valueOf(st.nextToken());
+            cur[1] = Integer.valueOf(st.nextToken());
+
+            st = new StringTokenizer(br.readLine());
+            Integer goal[] = new Integer[2];
+            goal[0] = Integer.valueOf(st.nextToken());
+            goal[1] = Integer.valueOf(st.nextToken());
+            if (cur[0].equals(goal[0]) && cur[1].equals(goal[1])) {
+                sb.append(0).append("\n");
+            } else {
+                sb.append(bfs7562(visited, cur, goal)).append("\n");
+            }
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int bfs7562(int visited[][], Integer[] cur, Integer[] goal) {
+        points = new LinkedList<>();
+        points.add(cur);
+        while (!points.isEmpty()) {
+            Integer point[] = points.poll();
+            for (int i = 0; i < moveX.length; i++) {
+                int curY = point[0] + moveY[i];
+                int curX = point[1] + moveX[i];
+                if (curX >= 0 && curY >= 0 && curY < visited.length && curX < visited[curY].length) {
+                    if (visited[curY][curX] == 0) {
+                        visited[curY][curX] = visited[point[0]][point[1]]+1;
+                        points.add(new Integer[]{curY, curX});
+                    }
+                    if(curY == goal[0] && curX == goal[1])
+                        return visited[curY][curX];
+                }
+            }
+        }
+        return 0;
+    }
+
 
     private static void prob2178() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
