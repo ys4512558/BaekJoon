@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -24,8 +25,73 @@ public class Main {
     static int moveX[] = {-2, -1, 1, 2, -2, -1, 1, 2};
     static int moveY[] = {-1, -2, -2, -1, 1, 2, 2, 1};
     static int isVisited[][];
+    static int max = 0;
     public static void main(String[] args) throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int M = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        points = new LinkedList<>();
+
+        int tomato[][] = new int[N][M];
+        isVisited = new int[N][M];
+
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < M; j++) {
+                tomato[i][j] = Integer.parseInt(st.nextToken());
+                if(tomato[i][j] == 1) {
+                    points.add(new Integer[]{i, j});
+                    isVisited[i][j] = 0;
+                }
+                else {
+                    isVisited[i][j] = -1;
+                }
+            }
+        }
+        bfs7576(tomato, points);
+        boolean check = false;
+        int res = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if(isVisited[i][j] == -1 && tomato[i][j] != -1) {
+                    check = true;
+                    break;
+                }
+                else {
+                    res = Math.max(res, isVisited[i][j]);
+                }
+            }
+        }
+        if(check)
+            sb.append("-1");
+        else {
+            sb.append(res);
+        }
+
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
+
+    private static void bfs7576(int[][] tomato, Queue<Integer[]> points) {
+        while (!points.isEmpty()) {
+            Integer[] curPoint = points.poll();
+            int curX  = curPoint[1];
+            int curY  = curPoint[0];
+            for (int i = 0; i < 4; i++) {
+                int X = curX + dx[i];
+                int Y = curY + dy[i];
+                if (X >= 0 && Y >= 0 && Y < tomato.length && X < tomato[Y].length){
+                    if (isVisited[Y][X] == -1 && tomato[Y][X] != -1) {
+                        points.add(new Integer[]{Y, X});
+                        tomato[Y][X] = 1;
+                        isVisited[Y][X] = isVisited[curY][curX] + 1;
+                    }
+                }
+            }
+        }
+    }
+
 
     private static void prob7562_bfs() throws IOException {
         int T = Integer.parseInt(br.readLine());
