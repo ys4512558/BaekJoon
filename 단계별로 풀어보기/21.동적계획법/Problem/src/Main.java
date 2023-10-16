@@ -30,6 +30,98 @@ public class Main {
 
     }
 
+    private static void prob2565_2() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        wire = new int[N][2];
+        dp = new int[N];
+        int max = 0;
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            wire[i][0] = Integer.parseInt(st.nextToken());
+            wire[i][1] = Integer.parseInt(st.nextToken());
+        }
+        Arrays.sort(wire, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] - o2[0];
+            }
+        });
+
+        for (int i = 0; i < N; i++) {
+            dp[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if(wire[i][1] > wire[j][1])
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+            }
+            max = Math.max(max, dp[i]);
+        }
+        sb.append(N - max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob11054_2() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int arr[] = new int[N];
+        int len[] = new int[N];
+        int max = 0;
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+            len[i] = 1;
+        }
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < i; j++) {
+                //현재 수를 커지는 수로 사용할 경우
+                if(arr[i] > arr[j]){
+                    len[i] = Math.max(len[i], len[j] + 1);
+                }
+            }
+        }
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < i; j++) {
+                //현재 수를 작아지는 수로 사용할 경우
+                if(arr[i] < arr[j]){
+                    len[i] = Math.max(len[i], len[j] + 1);
+                }
+            }
+        }
+
+        for (int i = 0; i < len.length; i++) {
+            max = Math.max(max, len[i]);
+        }
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob11053() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int arr[] = new int[N];
+        int len[] = new int[N];
+        int max = 0;
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+            len[i] = 1;
+        }
+
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < i; j++) {
+                if(arr[i] > arr[j])
+                    len[i] = Math.max(len[i], len[j]+1);
+            }
+            max = Math.max(max, len[i]);
+        }
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob2156_2() throws IOException {
         int N = Integer.parseInt(br.readLine());
         int wine[] = new int[N + 1];

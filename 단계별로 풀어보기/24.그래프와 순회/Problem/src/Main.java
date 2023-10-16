@@ -27,6 +27,10 @@ public class Main {
     static int isVisited[][];
     static int max = 0;
     public static void main(String[] args) throws IOException {
+        
+    }
+
+    private static void prob7576() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int M = Integer.parseInt(st.nextToken());
         int N = Integer.parseInt(st.nextToken());
