@@ -27,7 +27,82 @@ public class Main {
     static int isVisited[][];
     static int max = 0;
     public static void main(String[] args) throws IOException {
-        
+
+    }
+
+    private static void prob7569() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int M = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        int H = Integer.parseInt(st.nextToken());
+
+        int tomato[][][] = new int[H][N][M];
+        int visit[][][] = new int[H][N][M];
+        Queue<Integer[]> queue = new LinkedList<>();
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < N; j++) {
+                st = new StringTokenizer(br.readLine());
+                for (int k = 0; k < M; k++) {
+                    tomato[i][j][k] = Integer.parseInt(st.nextToken());
+                    visit[i][j][k] = -1;
+                    if(tomato[i][j][k] == 1) {
+                        queue.add(new Integer[]{i, j, k});
+                        visit[i][j][k] = 0;
+                    }
+                }
+            }
+        }
+        visit = bfs7569(tomato, visit, queue);
+        int res = 0;
+        boolean isAvalilable = true;
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < N; j++) {
+                for (int k = 0; k < M; k++) {
+                    if(visit[i][j][k] == -1 && tomato[i][j][k] != -1){
+                        isAvalilable = false;
+                        break;
+                    }
+                    res = Math.max(res, visit[i][j][k]);
+                }
+            }
+        }
+        if(!isAvalilable)
+            sb.append("-1");
+        else {
+            sb.append(res);
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int[][][] bfs7569(int[][][] tomato, int[][][] visit, Queue<Integer[]> queue) {
+        int dx[] = {-1, 1, 0, 0, 0, 0};
+        int dy[] = {0, 0, -1, 1, 0, 0};
+        int dz[] = {0, 0, 0, 0, -1, 1};
+        while (!queue.isEmpty()) {
+            Integer point[] = queue.poll();
+            int X = point[2];
+            int Y = point[1];
+            int Z = point[0];
+
+            for (int i = 0; i < 6; i++) {
+                int curX = X + dx[i];
+                int curY = Y + dy[i];
+                int curZ = Z + dz[i];
+
+                if(curZ >= 0 && curY >= 0 && curX >= 0
+                        && curZ < tomato.length
+                        && curY < tomato[curZ].length
+                        && curX < tomato[curZ][curY].length){
+                    if(tomato[curZ][curY][curX] == 0 && visit[curZ][curY][curX] == -1){
+                        visit[curZ][curY][curX] = visit[Z][Y][X]+1;
+                        queue.add(new Integer[]{curZ, curY, curX});
+                    }
+                }
+            }
+        }
+        return visit;
     }
 
     private static void prob7576() throws IOException {
