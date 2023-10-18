@@ -27,6 +27,24 @@ public class Main {
     static int isVisited[][];
     static int max = 0;
     public static void main(String[] args) throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        int ladder[][] = new int[N][2];
+        int snake[][] = new int[M][2];
+        int visit[] = new int[101];
+
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            ladder[i][0] = Integer.parseInt(st.nextToken());
+            ladder[i][1] = Integer.parseInt(st.nextToken());
+        }
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            snake[i][0] = Integer.parseInt(st.nextToken());
+            snake[i][1] = Integer.parseInt(st.nextToken());
+        }
 
     }
 
