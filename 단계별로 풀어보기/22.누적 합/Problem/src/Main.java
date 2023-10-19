@@ -5,11 +5,69 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringBuilder sb = new StringBuilder();
-
     static int cnt[][];
     public static void main(String[] args) throws IOException {
 
     }
+
+    private static void prob25682() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
+        char chess[][] = new char[N][M];
+        int sumB[][] = new int[N+1][M+1];
+        int sumW[][] = new int[N+1][M+1];
+        for (int i = 0; i < N; i++) {
+            chess[i] = br.readLine().toCharArray();
+        }
+
+        sumB = calcSum(chess, sumB, 'B');
+        sumW = calcSum(chess, sumW, 'W');
+
+        int min = N * M;
+        for (int i = 0; i <= N-K; i++) {
+            for (int j = 0; j <= M-K; j++) {
+                int resB = sumB[i + K][j + K] - sumB[i + K][j] - sumB[i][j + K] + sumB[i][j];
+                int resW = sumW[i + K][j + K] - sumW[i + K][j] - sumW[i][j + K] + sumW[i][j];
+                min = Math.min(min, Math.min(resB, resW));
+            }
+        }
+        sb.append(min);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int[][] calcSum(char[][] chess, int[][] sum, char color) {
+        for (int i = 1; i <= chess.length; i++) {
+            for (int j = 1; j <= chess[i-1].length; j++) {
+                int value = 0;
+                if ((i + j) % 2 == 0){
+                    value = chess[i - 1][j - 1] == color ? 0 : 1;
+                } else {
+                    value = chess[i - 1][j - 1] != color ? 0 : 1;
+                }
+                sum[i][j] = sum[i][j - 1] + sum[i - 1][j] - sum[i - 1][j - 1] + value;
+            }
+        }
+        return sum;
+    }
+
+    private static int[][] checkColor(char[][] chess, int[][] check, int[][] sum, char color) {
+        for (int i = 1; i < chess.length; i++) {
+            for (int j = 1; j < chess[i].length; j++) {
+                if (color == 'B' && (i + j) % 2 == 0 && chess[i][j] == color) {
+                    check[i][j] = 0;
+                } else {
+                    check[i][j] = 1;
+                }
+            }
+        }
+        return check;
+    }
+
 
     private static void prob11660() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
