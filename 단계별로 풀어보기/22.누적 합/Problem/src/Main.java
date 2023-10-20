@@ -10,6 +10,70 @@ public class Main {
 
     }
 
+    private static void prob10986() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        long arr[] = new long[N];
+        long sum[] = new long[N + 1];
+        long count[] = new long[M];
+
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        sum[0] = 0;
+        long res = 0;
+        for (int i = 1; i <= N; i++) {
+            sum[i] = sum[i - 1] + arr[i - 1];
+            int mod = (int) (sum[i] % M);
+            if(mod == 0){
+                res++;
+            }
+            count[mod]++;
+        }
+
+        for (int i = 0; i < count.length; i++) {
+            res += count[i] * (count[i] - 1) / 2;
+
+        }
+
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob10986_fail() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int arr[] = new int[N];
+        int sum[] = new int[N + 1];
+
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        sum[0] = 0;
+        for (int i = 1; i <= N; i++) {
+            sum[i] = sum[i - 1] + arr[i - 1];
+        }
+        int cnt = 0;
+        for (int i = 0; i <= N; i++) {
+            for (int j = i+1; j <= N; j++) {
+                int res = sum[j] - sum[i];
+                cnt = res % M == 0 ? cnt+1 : cnt;
+            }
+        }
+        sb.append(cnt);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob11660_2() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
