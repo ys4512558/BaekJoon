@@ -34,7 +34,7 @@ public class Main {
         int ladder[][] = new int[N][2];
         int snake[][] = new int[M][2];
         int visit[] = new int[101];
-
+        queue = new LinkedList<>();
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             ladder[i][0] = Integer.parseInt(st.nextToken());
@@ -45,8 +45,78 @@ public class Main {
             snake[i][0] = Integer.parseInt(st.nextToken());
             snake[i][1] = Integer.parseInt(st.nextToken());
         }
+        Comparator<int[]> comparator = new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if (o1[0] == o2[0]) {
+                    return o1[1] - o2[1];
+                }
+                return o1[0] - o2[0];
+            }
+        };
+        Arrays.sort(ladder, comparator);
+        Arrays.sort(snake, comparator);
 
+        for (int i = 0; i < ladder.length; i++) {
+            System.out.println(ladder[i][0] + " " + ladder[i][1]);
+        }
+        for (int i = 0; i < snake.length; i++) {
+            System.out.println(snake[i][0] + " " + snake[i][1]);
+        }
+
+
+        bfs16928(ladder, snake, visit);
+        sb.append(visit[100]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
+
+    private static void bfs16928(int[][] ladder, int[][] snake, int[] visit) {
+        for (int i = 1; i <= 6; i++) {
+            visit[i] = 1;
+            for (int j = 0; j < ladder.length; j++) {
+                if (i == ladder[j][0]) {
+                    queue.add(ladder[j][1]);
+                    visit[ladder[j][1]] = visit[i];
+                }
+            }
+            for (int j = 0; j < snake.length; j++) {
+                if (i == snake[j][0]) {
+                    queue.add(snake[j][1]);
+                    visit[snake[j][1]] = visit[i];
+                }
+            }
+            queue.add(i);
+        }
+
+        while (!queue.isEmpty()) {
+            int q = queue.poll();
+            System.out.println(q);
+            for (int i = 1; i <= 6; i++) {
+                if ((q + i) <= 100 && visit[q + i] == 0) {
+                    visit[q + i] = visit[q] + 1;
+                    for (int j = 0; j < ladder.length; j++) {
+                        if ((q + i) == ladder[j][0]) {
+                            queue.add(ladder[j][1]);
+                            visit[ladder[j][1]] = visit[q + i];
+                        }
+                    }
+                    for (int j = 0; j < snake.length; j++) {
+                        if ((q + i) == snake[j][0]) {
+                            queue.add(snake[j][1]);
+                            visit[snake[j][1]] = visit[q + i];
+                        }
+                    }
+                }
+            }
+            if (q == 100) {
+                sb.append(visit[100]).append("\n");
+                return;
+            }
+        }
+    }
+
 
     private static void prob7569() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
