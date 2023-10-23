@@ -18,7 +18,6 @@ public class Main {
 
     static int cost[][];
 
-
     final static int dx[] = {-1, 1, 0, 0};
     final static int dy[] = {0, 0, -1, 1};
 
@@ -27,54 +26,67 @@ public class Main {
     static int isVisited[][];
     static int max = 0;
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob16928() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        int ladder[][] = new int[N][2];
-        int snake[][] = new int[M][2];
+        int ladderAndSnake[] = new int[101];
         int visit[] = new int[101];
+        for (int i = 0; i < N+M; i++) {
+            st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            ladderAndSnake[start] = end;
+        }
         queue = new LinkedList<>();
-        for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine());
-            ladder[i][0] = Integer.parseInt(st.nextToken());
-            ladder[i][1] = Integer.parseInt(st.nextToken());
-        }
-        for (int i = 0; i < M; i++) {
-            st = new StringTokenizer(br.readLine());
-            snake[i][0] = Integer.parseInt(st.nextToken());
-            snake[i][1] = Integer.parseInt(st.nextToken());
-        }
-        Comparator<int[]> comparator = new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if (o1[0] == o2[0]) {
-                    return o1[1] - o2[1];
-                }
-                return o1[0] - o2[0];
-            }
-        };
-        Arrays.sort(ladder, comparator);
-        Arrays.sort(snake, comparator);
 
-        for (int i = 0; i < ladder.length; i++) {
-            System.out.println(ladder[i][0] + " " + ladder[i][1]);
-        }
-        for (int i = 0; i < snake.length; i++) {
-            System.out.println(snake[i][0] + " " + snake[i][1]);
-        }
-
-
-        bfs16928(ladder, snake, visit);
+        bfs16928(ladderAndSnake, visit);
+        
         sb.append(visit[100]);
         bw.write(sb.toString());
         bw.flush();
         bw.close();
     }
 
-    private static void bfs16928(int[][] ladder, int[][] snake, int[] visit) {
-        for (int i = 1; i <= 6; i++) {
-            visit[i] = 1;
+    private static void bfs16928(int[] ladderAndSnake, int[] visit) {
+        queue.add(1);
+
+        while (!queue.isEmpty()) {
+            int q = queue.poll();
+            if (q == 100) {
+                return;
+            }
+
+            for (int i = 1; i <= 6; i++) {
+                int cur = q + i;
+                if (cur > 100) {
+                    continue;
+                }
+                if (visit[cur] != 0) {
+                    continue;
+                }
+                visit[cur] = visit[q] + 1;
+                if (ladderAndSnake[cur] != 0) {
+                    if (visit[ladderAndSnake[cur]] == 0) {
+                        queue.add(ladderAndSnake[cur]);
+                        visit[ladderAndSnake[cur]] = visit[q] + 1;
+                    }
+                } else {
+                    queue.add(cur);
+                    visit[cur] = visit[q] + 1;
+                }
+            }
+        }
+    }
+
+    private static void bfs169281(int[][] ladder, int[][] snake, int[] visit) {
+        for (int i = 2; i <= 7; i++) {
+            visit[i] = visit[1]+1;
+            queue.add(i);
             for (int j = 0; j < ladder.length; j++) {
                 if (i == ladder[j][0]) {
                     queue.add(ladder[j][1]);
@@ -87,15 +99,14 @@ public class Main {
                     visit[snake[j][1]] = visit[i];
                 }
             }
-            queue.add(i);
         }
 
         while (!queue.isEmpty()) {
             int q = queue.poll();
-            System.out.println(q);
             for (int i = 1; i <= 6; i++) {
                 if ((q + i) <= 100 && visit[q + i] == 0) {
                     visit[q + i] = visit[q] + 1;
+                    queue.add(q + i);
                     for (int j = 0; j < ladder.length; j++) {
                         if ((q + i) == ladder[j][0]) {
                             queue.add(ladder[j][1]);
@@ -103,16 +114,12 @@ public class Main {
                         }
                     }
                     for (int j = 0; j < snake.length; j++) {
-                        if ((q + i) == snake[j][0]) {
+                        if ((q + i) == snake[j][0] && visit[snake[j][1]] == 0) {
                             queue.add(snake[j][1]);
-                            visit[snake[j][1]] = visit[q + i];
+                            visit[snake[j][0]] = 0;
                         }
                     }
                 }
-            }
-            if (q == 100) {
-                sb.append(visit[100]).append("\n");
-                return;
             }
         }
     }
