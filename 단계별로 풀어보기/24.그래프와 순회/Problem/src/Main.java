@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -10,17 +9,12 @@ public class Main {
     static boolean visited[];
     static boolean isVisit[][];
     static int cnt = 1;
-
     static int count = 0;
     static Queue<Integer> queue;
-
     static Queue<Integer[]> points;
-
     static int cost[][];
-
     final static int dx[] = {-1, 1, 0, 0};
     final static int dy[] = {0, 0, -1, 1};
-
     static int moveX[] = {-2, -1, 1, 2, -2, -1, 1, 2};
     static int moveY[] = {-1, -2, -2, -1, 1, 2, 2, 1};
     static int isVisited[][];
@@ -28,6 +22,133 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
     }
+
+    private static void prob2206() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        int map[][] = new int[N][M];
+        int visit[][][] = new int[2][N][M];
+        Queue<int[]> queue = new LinkedList<>();
+        for (int i = 0; i < N; i++) {
+            String input = br.readLine();
+            for (int j = 0; j < M; j++) {
+                map[i][j] = Integer.parseInt(String.valueOf(input.charAt(j)));
+            }
+        }
+        visit[0][0][0] = 1;
+        visit[1][0][0] = 1;
+
+        queue.add(new int[]{0, 0, 0});
+        bfs2206(map, visit, queue, N, M);
+
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void bfs2206(int[][] map, int[][][] visit, Queue<int[]> queue, int N, int M) {
+        while (!queue.isEmpty()) {
+            int point[] = queue.poll();
+            int crash = point[0];
+            int y = point[1];
+            int x = point[2];
+
+            if (y == N - 1 && x == M - 1) {
+                sb.append(visit[crash][y][x]);
+                return;
+            }
+
+            for (int i = 0; i < 4; i++) {
+                int curX = x + dx[i];
+                int curY = y + dy[i];
+
+                if (curX < 0 || curY < 0 || curY >= map.length || curX >= map[curY].length) {
+                    continue;
+                }
+                if (map[curY][curX] == 1) {
+                    if(crash == 0 && visit[1][curY][curX] == 0){
+                        queue.add(new int[]{1, curY, curX});
+                        visit[1][curY][curX] = visit[0][y][x] + 1;
+                    }
+                } else {
+                    if (visit[crash][curY][curX] == 0) {
+                        visit[crash][curY][curX] = visit[crash][y][x] + 1;
+                        queue.add(new int[]{crash, curY, curX});
+                    }
+                }
+                if (curY == N - 1 && curX == M - 1) {
+                    sb.append(visit[crash][curY][curX]);
+                    return;
+                }
+            }
+        }
+        sb.append(-1);
+    }
+
+
+    private static void prob2206_timeOut() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        int map[][] = new int[N][M];
+        isVisited = new int[N][M];
+
+        for (int i = 0; i < N; i++) {
+            String input = br.readLine();
+            for (int j = 0; j < M; j++) {
+                map[i][j] = Integer.parseInt(String.valueOf(input.charAt(j)));
+            }
+        }
+
+        int res = 1000000;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                points = new LinkedList<>();
+                points.add(new Integer[]{0, 0});
+                isVisited = new int[N][M];
+                isVisited[0][0] = 1;
+                if (map[i][j] == 1) {
+                    map[i][j] = 0;
+                    res = Math.min(res, bfs2206(map, N, M));
+                    map[i][j] = 1;
+                } else {
+                    res = Math.min(res, bfs2206(map, N, M));
+                }
+            }
+        }
+        res = res == 1000000 ? -1 : res;
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int bfs2206(int[][] map, int N, int M) {
+        while (!points.isEmpty()) {
+            Integer[] point = points.poll();
+            int y = point[0];
+            int x = point[1];
+
+            for (int i = 0; i < 4; i++) {
+                int curX = x + dx[i];
+                int curY = y + dy[i];
+
+                if (curX >= 0 && curY >= 0 && curY < N && curX < M) {
+                    if (isVisited[curY][curX] == 0 && map[curY][curX] == 0) {
+                        points.add(new Integer[]{curY, curX});
+                        isVisited[curY][curX] = isVisited[y][x] + 1;
+                    }
+                }
+            }
+        }
+        return isVisited[N - 1][M - 1] == 0 ? 1000000 : isVisited[N - 1][M - 1];
+    }
+
 
     private static void prob16928() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -45,7 +166,7 @@ public class Main {
         queue = new LinkedList<>();
 
         bfs16928(ladderAndSnake, visit);
-        
+
         sb.append(visit[100]);
         bw.write(sb.toString());
         bw.flush();
