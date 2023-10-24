@@ -12,6 +12,32 @@ public class Main {
 
     }
 
+    private static void prob13305_2() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        long dist[] = new long[N-1];
+        long cost[] = new long[N];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N-1; i++) {
+            dist[i] = Long.parseLong(st.nextToken());
+        }
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            cost[i] = Long.parseLong(st.nextToken());
+        }
+
+        long min = cost[0];
+        long sum = 0;
+        for (int i = 0; i < N-1; i++) {
+            min = Math.min(min, cost[i]);
+            sum += (dist[i] * min);
+        }
+        sb.append(sum);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob1541_2() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine(), "-");
         String[] strs = new String[st.countTokens()];
