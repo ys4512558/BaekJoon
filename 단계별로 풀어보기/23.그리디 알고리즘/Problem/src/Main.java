@@ -11,6 +11,69 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
     }
+
+    private static void prob1541_2() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine(), "-");
+        String[] strs = new String[st.countTokens()];
+        for (int i = 0; i < strs.length; i++) {
+            strs[i] = st.nextToken();
+        }
+        int res = 0;
+        for (int i = 0; i < strs.length; i++) {
+            int tmp = 0;
+            if (strs[i].contains("+")) {
+                st = new StringTokenizer(strs[i], "+");
+                while (st.hasMoreTokens()) {
+                    tmp += Integer.parseInt(st.nextToken());
+                }
+            } else {
+                tmp += Integer.parseInt(strs[i]);
+            }
+            res = i == 0 ? (res + tmp) : (res - tmp);
+        }
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob1931_2() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int time[][] = new int[N][2];
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            time[i][0] = Integer.parseInt(st.nextToken());
+            time[i][1] = Integer.parseInt(st.nextToken());
+        }
+        Arrays.sort(time, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if (o1[0] == o2[0]) {
+                    return o1[1] - o2[1];
+                }
+                return o1[0] - o2[0];
+            }
+        });
+
+        int end = time[0][1];
+        int cnt = 1;
+        for (int i = 1; i < time.length; i++) {
+            //끝나는 시간이 더 작은 경우
+            if (end > time[i][1]) {
+                end = time[i][1];
+            }
+            //시작 시간이 이전 회의 종료 시간보다 크거나 같은 경우
+            else if (end <= time[i][0]) {
+                end = time[i][1];
+                cnt++;
+            }
+        }
+        sb.append(cnt);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob11047_2() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
