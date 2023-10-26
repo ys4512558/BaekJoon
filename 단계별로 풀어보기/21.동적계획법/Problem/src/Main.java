@@ -26,8 +26,36 @@ public class Main {
     static int dp[];
     static int tile[];
     static long num[][];
+
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob9095() throws IOException {
+        int T = Integer.parseInt(br.readLine());
+        for (int i = 0; i < T; i++) {
+            int N = Integer.parseInt(br.readLine());
+            dp = new int[N+1];
+            sb.append(dp9095(N)).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int dp9095(int N) {
+        if (N == 1) {
+            return dp[1] = 1;
+        } else if (N == 2) {
+            return dp[2] = 2;
+        } else if (N == 3) {
+            return dp[3] = 4;
+        }
+
+        if(dp[N] == 0){
+            dp[N] = dp9095(N - 1) + dp9095(N - 2) + dp9095(N - 3);
+        }
+        return dp[N];
     }
 
     private static void prob2565_2() throws IOException {
