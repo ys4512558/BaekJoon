@@ -26,9 +26,37 @@ public class Main {
     static int dp[];
     static int tile[];
     static long num[][];
-
+    static int one = 0;
+    static int zero = 0;
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob1003() throws IOException {
+        int T = Integer.parseInt(br.readLine());
+
+        Integer dp[][] = new Integer[41][2];
+        dp[0][0] = 1;
+        dp[0][1] = 0;
+        dp[1][0] = 0;
+        dp[1][1] = 1;
+
+        for (int i = 0; i < T; i++) {
+            int N = Integer.parseInt(br.readLine());
+            fibonacci1003(dp, N);
+            sb.append(dp[N][0]).append(" ").append(dp[N][1]).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static Integer[] fibonacci1003(Integer dp[][], int N) {
+        if(dp[N][0] == null || dp[N][1] == null) {
+            dp[N][0] = fibonacci1003(dp,N - 1)[0] + fibonacci1003(dp,N - 2)[0];
+            dp[N][1] = fibonacci1003(dp,N - 1)[1] + fibonacci1003(dp,N - 2)[1];
+        }
+        return dp[N];
     }
 
     private static void prob9095() throws IOException {
