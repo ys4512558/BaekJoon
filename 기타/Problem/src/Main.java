@@ -7,6 +7,32 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob2577() throws IOException {
+        int A = Integer.parseInt(br.readLine());
+        int B = Integer.parseInt(br.readLine());
+        int C = Integer.parseInt(br.readLine());
+
+        int res = A * B * C;
+
+        int num[] = new int[10];
+
+        while (res > 0) {
+            num[res % 10]++;
+            res /= 10;
+        }
+
+        for (int i = 0; i < num.length; i++) {
+            sb.append(num[i]).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
