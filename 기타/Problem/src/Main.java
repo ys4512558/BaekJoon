@@ -10,6 +10,21 @@ public class Main {
 
     }
 
+    private static void prob2475() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int arr[] = new int[5];
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+            sum += arr[i] * arr[i];
+        }
+        int res = sum % 10;
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob2577() throws IOException {
         int A = Integer.parseInt(br.readLine());
         int B = Integer.parseInt(br.readLine());
