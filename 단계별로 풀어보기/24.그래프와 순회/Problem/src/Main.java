@@ -23,6 +23,72 @@ public class Main {
 
     }
 
+    private static void prob2468() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        int map[][] = new int[N][N];
+        boolean isImmersed[][] = new boolean[N][N];
+        boolean visited[][] = new boolean[N][N];
+        int max = 0;
+        int height = 0;
+
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                map[i][j] = Integer.parseInt(st.nextToken());
+                height = Math.max(height, map[i][j]);
+            }
+        }
+
+        for (int i = 0; i <= height; i++) {
+            max = Math.max(max, bfs2468(map, i));
+        }
+
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int bfs2468(int[][] map, int height) {
+        Queue<Integer[]> queue = new LinkedList<>();
+        int count = 0;
+
+        boolean[][] visited = new boolean[map.length][map[0].length];
+
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                if (map[i][j] > height && !visited[i][j]) {
+                    queue.add(new Integer[]{i, j});
+                    visited[i][j] = true;
+
+                    while (!queue.isEmpty()) {
+                        Integer point[] = queue.poll();
+                        int y = point[0];
+                        int x = point[1];
+
+                        for (int k = 0; k < 4; k++) {
+                            int curY = y + dy[k];
+                            int curX = x + dx[k];
+
+                            if (curX < 0 || curY < 0 || curY >= map.length || curX >= map[curY].length) {
+                                continue;
+                            }
+                            if (visited[curY][curX] || map[curY][curX] <= height) {
+                                continue;
+                            }
+
+                            queue.add(new Integer[]{curY, curX});
+                            visited[curY][curX] = true;
+                        }
+                    }
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     private static void prob14502() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
