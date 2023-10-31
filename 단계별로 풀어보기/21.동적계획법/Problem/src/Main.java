@@ -29,7 +29,30 @@ public class Main {
     static int one = 0;
     static int zero = 0;
     public static void main(String[] args) throws IOException {
+        prob2775();
+    }
 
+    private static void prob2775() throws IOException {
+        int T = Integer.parseInt(br.readLine());
+        for (int i = 0; i < T; i++) {
+            int k = Integer.parseInt(br.readLine());
+            int n = Integer.parseInt(br.readLine());
+
+            int sum[][] = new int[k + 1][n + 1];
+            for (int j = 0; j <= k; j++) {
+                for (int l = 1; l <= n; l++) {
+                    if (j == 0) {
+                        sum[j][l] = sum[j][l - 1] + l;
+                        continue;
+                    }
+                    sum[j][l] = sum[j - 1][l] + sum[j][l - 1];
+                }
+            }
+            sb.append(sum[k - 1][n]).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob1003() throws IOException {
