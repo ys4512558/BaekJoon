@@ -26,10 +26,25 @@ public class Main {
     static int dp[];
     static int tile[];
     static long num[][];
-    static int one = 0;
-    static int zero = 0;
     public static void main(String[] args) throws IOException {
-        prob2775();
+
+    }
+
+    private static void prob11727() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        int dp[] = new int[1001];
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 3;
+
+        for (int i = 3; i <= N; i++) {
+            dp[i] = (dp[i - 2] * 2 + dp[i - 1]) % 10007;
+        }
+        sb.append(dp[N]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob2775() throws IOException {
