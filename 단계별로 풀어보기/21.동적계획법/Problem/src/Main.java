@@ -30,6 +30,20 @@ public class Main {
 
     }
 
+    private static void prob2193() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        long dp[] = new long[91];
+        dp[1] = 1;
+        dp[2] = 1;
+        for (int i = 3; i <= N; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        sb.append(dp[N]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob11727() throws IOException {
         int N = Integer.parseInt(br.readLine());
 
