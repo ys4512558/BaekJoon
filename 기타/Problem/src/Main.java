@@ -10,6 +10,17 @@ public class Main {
 
     }
 
+    private static void prob2420() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        long N = Long.parseLong(st.nextToken());
+        long M = Long.parseLong(st.nextToken());
+        long res = Math.abs(N - M);
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob2475() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int arr[] = new int[5];
