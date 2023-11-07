@@ -10,6 +10,24 @@ public class Main {
 
     }
 
+    private static void prob1712() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        long A = Long.parseLong(st.nextToken());
+        long B = Long.parseLong(st.nextToken());
+        long C = Long.parseLong(st.nextToken());
+        long CB = C - B;
+
+        if (C <= B) {
+            sb.append(-1);
+        } else {
+            sb.append(A / CB + 1);
+        }
+
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob2420() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         long N = Long.parseLong(st.nextToken());
