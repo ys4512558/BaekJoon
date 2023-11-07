@@ -27,7 +27,22 @@ public class Main {
     static int tile[];
     static long num[][];
     public static void main(String[] args) throws IOException {
+        int T = Integer.parseInt(br.readLine());
+        
+        for (int i = 0; i < T; i++) {
+            int N = Integer.parseInt(br.readLine());
+            int arr[][] = new int[2][N];
+            int dp[][] = new int[2][N];
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < 2; j++) {
+                for (int k = 0; k < N; k++) {
+                    arr[j][k] = Integer.parseInt(st.nextToken());
+                }
+            }
 
+
+        }
+        
     }
 
     private static void prob14051() throws IOException {
