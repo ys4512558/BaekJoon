@@ -27,22 +27,33 @@ public class Main {
     static int tile[];
     static long num[][];
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob9465() throws IOException {
         int T = Integer.parseInt(br.readLine());
-        
+
         for (int i = 0; i < T; i++) {
             int N = Integer.parseInt(br.readLine());
-            int arr[][] = new int[2][N];
-            int dp[][] = new int[2][N];
-            StringTokenizer st = new StringTokenizer(br.readLine());
+            int arr[][] = new int[2][N+1];
+            int dp[][] = new int[2][N+1];
             for (int j = 0; j < 2; j++) {
-                for (int k = 0; k < N; k++) {
+                StringTokenizer st = new StringTokenizer(br.readLine());
+                for (int k = 1; k <= N; k++) {
                     arr[j][k] = Integer.parseInt(st.nextToken());
+                    dp[j][k] = arr[j][k];
                 }
             }
 
-
+            for (int j = 2; j <= N; j++) {
+                dp[0][j] = Math.max(dp[1][j - 1], dp[1][j - 2]) + arr[0][j];
+                dp[1][j] = Math.max(dp[0][j - 1], dp[0][j - 2]) + arr[1][j];
+            }
+            sb.append(Math.max(dp[0][N], dp[1][N])).append("\n");
         }
-        
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob14051() throws IOException {
