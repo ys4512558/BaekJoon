@@ -30,6 +30,33 @@ public class Main {
 
     }
 
+    private static void prob2293() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
+        int coin[] = new int[N];
+        int dp[] = new int[K+1];
+        for (int i = 0; i < N; i++) {
+            coin[i] = Integer.parseInt(br.readLine());
+        }
+        Arrays.sort(coin);
+
+        for (int i = 0; i < coin.length; i++) {
+            for (int j = 1; j <= K; j++) {
+                if (j - coin[i] > 0) {
+                    dp[j] = dp[j] + dp[j-coin[i]];
+                } else if (j - coin[i] == 0) {
+                    dp[j]++;
+                }
+            }
+        }
+        sb.append(dp[K]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob9465() throws IOException {
         int T = Integer.parseInt(br.readLine());
 
