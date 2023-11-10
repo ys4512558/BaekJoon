@@ -30,6 +30,28 @@ public class Main {
 
     }
 
+    private static void prob11057() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int arr[][] = new int[1001][10];
+        int dp[] = new int[1001];
+        for (int i = 0; i < 10; i++) {
+            arr[1][i] = 1;
+        }
+
+        for (int i = 1; i <= N; i++) {
+            for (int j = 0; j < 10; j++) {
+                for (int k = j; k < 10; k++) {
+                    arr[i][j] = (arr[i][j] + arr[i - 1][k]) % 10007;
+                }
+                dp[i] = (dp[i]+arr[i][j]) % 10007;
+            }
+        }
+        sb.append(dp[N]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob2293() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
