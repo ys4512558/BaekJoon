@@ -19,8 +19,60 @@ public class Main {
     static int moveY[] = {-1, -2, -2, -1, 1, 2, 2, 1};
     static int isVisited[][];
     static int max = 0;
+
+    static int moveH[] = {-1, 1, 0, 0, -1, -1, 1, 1};
+    static int moveW[] = {0, 0, -1, 1, -1, 1, -1, 1};
+
+
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob4963() throws IOException {
+        int cnt = 0;
+        while (true) {
+            int map[][] = new int[50][50];
+            isVisit = new boolean[50][50];
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int w = Integer.parseInt(st.nextToken());
+            int h = Integer.parseInt(st.nextToken());
+            if (w == 0 && h == 0) {
+                break;
+            }
+            for (int i = 0; i < h; i++) {
+                StringTokenizer stk = new StringTokenizer(br.readLine());
+                for (int j = 0; j < w; j++) {
+                    map[i][j] = Integer.parseInt(stk.nextToken());
+                }
+            }
+            for (int i = 0; i < h; i++) {
+                for (int j = 0; j < w; j++) {
+                    if (!isVisit[i][j] && map[i][j] == 1){
+                        dfs4963(map, i, j);
+                        cnt++;
+                    }
+                }
+            }
+            sb.append(cnt).append("\n");
+            cnt = 0;
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    public static void dfs4963(int map[][], int h, int w){
+        isVisit[h][w] = true;
+        for (int i = 0; i < moveH.length; i++) {
+            int y = moveH[i] + h;
+            int x = moveW[i] + w;
+            if (y < 0 || x < 0 || y >= map.length || x >= map[y].length) {
+                continue;
+            }
+            if (!isVisit[y][x] && map[y][x] == 1) {
+                dfs4963(map, y, x);
+            }
+        }
     }
 
     private static void prob2468() throws IOException {
