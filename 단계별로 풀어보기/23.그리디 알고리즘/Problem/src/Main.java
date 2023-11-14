@@ -12,6 +12,32 @@ public class Main {
 
     }
 
+    private static void prob1026() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int A[] = new int[N];
+        int B[] = new int[N];
+        for (int i = 0; i < 2; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                if (i == 0) {
+                    A[j] = Integer.parseInt(st.nextToken());
+                } else {
+                    B[j] = Integer.parseInt(st.nextToken());
+                }
+            }
+        }
+        Arrays.sort(A);
+        Arrays.sort(B);
+        int s = 0;
+        for (int i = 0; i < N; i++) {
+            s += (A[i] * B[N - i - 1]);
+        }
+        sb.append(s);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob13305_2() throws IOException {
         int N = Integer.parseInt(br.readLine());
         long dist[] = new long[N-1];
