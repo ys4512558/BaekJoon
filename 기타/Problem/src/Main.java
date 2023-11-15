@@ -10,6 +10,29 @@ public class Main {
 
     }
 
+    private static void prob2609() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int max = Math.max(N, M);
+        int min = Math.min(N, M);
+
+        int res_gcd = gcd(max, min);
+        int res_lcm = (N * M) / res_gcd;
+        sb.append(res_gcd).append("\n");
+        sb.append(res_lcm);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static int gcd(int n, int m) {
+        int tmp = m;
+        m = n % m;
+        n = tmp;
+        return m != 0 ? gcd(n, m) : n;
+    }
+
     private static void prob1712() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         long A = Long.parseLong(st.nextToken());
