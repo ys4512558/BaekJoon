@@ -23,52 +23,40 @@ public class Main {
     static int moveH[] = {-1, 1, 0, 0, -1, -1, 1, 1};
     static int moveW[] = {0, 0, -1, 1, -1, 1, -1, 1};
 
-
-    static int res[][];
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob11403() throws IOException {
         int N = Integer.parseInt(br.readLine());
 
-        int edge[][] = new int[N][N];
-        res = new int[N][N];
+        int map[][] = new int[N][N];
 
         for (int i = 0; i < N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
-                edge[i][j] = Integer.parseInt(st.nextToken());
-                if(edge[i][j]==1)
-                    res[i][j] = 1;
+                map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                System.out.print(res[i][j] + " ");
+        for (int k = 0; k < N; k++) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (map[i][k] == 1 && map[k][j] == 1) {
+                        map[i][j] = 1;
+                    }
+                }
             }
-            System.out.println();
         }
 
         for (int i = 0; i < N; i++) {
-            dfs11403(0, i);
-        }
-        for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                sb.append(res[i][j]+" ");
+                sb.append(map[i][j]+" ");
             }
             sb.append("\n");
         }
         bw.write(sb.toString());
         bw.flush();
         bw.close();
-    }
-
-    private static void dfs11403(int n, int start) {
-        for (int i = 0; i < res.length; i++) {
-            if(res[n][i] == 1){
-                if(res[start][i] == 0){
-                    res[start][i] = 1;
-                }
-                dfs11403(i, start);
-            }
-        }
     }
 
     private static void prob4963() throws IOException {
