@@ -7,7 +7,20 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
+        prob3046();
+    }
 
+    private static void prob3046() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int R1 = Integer.parseInt(st.nextToken());
+        int S = Integer.parseInt(st.nextToken());
+
+        int R2 = (S * 2) - R1;
+
+        sb.append(R2);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob2609() throws IOException {
