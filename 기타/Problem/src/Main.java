@@ -10,6 +10,22 @@ public class Main {
 
     }
 
+    private static void prob2747() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        long fibo[] = new long[46];
+        fibo[0] = 0;
+        fibo[1] = 1;
+
+        for (int i = 2; i <= N; i++) {
+            fibo[i] = fibo[i - 2] + fibo[i - 1];
+        }
+
+        sb.append(fibo[N]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob1712() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         long A = Long.parseLong(st.nextToken());
