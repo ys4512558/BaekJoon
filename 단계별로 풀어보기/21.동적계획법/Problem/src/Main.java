@@ -27,22 +27,108 @@ public class Main {
     static int tile[];
     static long num[][];
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob11055() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        int arr[] = new int[N+1];
+        int dp[] = new int[N+1];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            arr[i+1] = Integer.parseInt(st.nextToken());
+        }
+        int max = 0;
+        for (int i = 1; i <= N; i++) {
+            dp[i] = arr[i];
+            for (int j = 0; j < i; j++) {
+                if (arr[i] > arr[j]) {
+                    dp[i] = Math.max(dp[i], dp[j]+arr[i]);
+                }
+                max = Math.max(max, dp[i]);
+            }
+        }
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob11057() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int arr[][] = new int[1001][10];
+        int dp[] = new int[1001];
+        for (int i = 0; i < 10; i++) {
+            arr[1][i] = 1;
+        }
+
+        for (int i = 1; i <= N; i++) {
+            for (int j = 0; j < 10; j++) {
+                for (int k = j; k < 10; k++) {
+                    arr[i][j] = (arr[i][j] + arr[i - 1][k]) % 10007;
+                }
+                dp[i] = (dp[i]+arr[i][j]) % 10007;
+            }
+        }
+        sb.append(dp[N]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob2293() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
+        int coin[] = new int[N];
+        int dp[] = new int[K+1];
+        for (int i = 0; i < N; i++) {
+            coin[i] = Integer.parseInt(br.readLine());
+        }
+        Arrays.sort(coin);
+
+        for (int i = 0; i < coin.length; i++) {
+            for (int j = 1; j <= K; j++) {
+                if (j - coin[i] > 0) {
+                    dp[j] = dp[j] + dp[j-coin[i]];
+                } else if (j - coin[i] == 0) {
+                    dp[j]++;
+                }
+            }
+        }
+        sb.append(dp[K]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob9465() throws IOException {
         int T = Integer.parseInt(br.readLine());
-        
+
         for (int i = 0; i < T; i++) {
             int N = Integer.parseInt(br.readLine());
-            int arr[][] = new int[2][N];
-            int dp[][] = new int[2][N];
-            StringTokenizer st = new StringTokenizer(br.readLine());
+            int arr[][] = new int[2][N+1];
+            int dp[][] = new int[2][N+1];
             for (int j = 0; j < 2; j++) {
-                for (int k = 0; k < N; k++) {
+                StringTokenizer st = new StringTokenizer(br.readLine());
+                for (int k = 1; k <= N; k++) {
                     arr[j][k] = Integer.parseInt(st.nextToken());
+                    dp[j][k] = arr[j][k];
                 }
             }
 
-
+            for (int j = 2; j <= N; j++) {
+                dp[0][j] = Math.max(dp[1][j - 1], dp[1][j - 2]) + arr[0][j];
+                dp[1][j] = Math.max(dp[0][j - 1], dp[0][j - 2]) + arr[1][j];
+            }
+            sb.append(Math.max(dp[0][N], dp[1][N])).append("\n");
         }
-        
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob14051() throws IOException {
