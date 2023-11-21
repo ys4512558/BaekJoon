@@ -12,6 +12,24 @@ public class Main {
 
     }
 
+    private static void prob1789() throws IOException {
+        long N = Long.parseLong(br.readLine());
+        long sum = N;
+        long cnt = 0;
+
+        for (int i = 1; ; i++) {
+            if (sum < 0) {
+                break;
+            }
+            sum -= i;
+            cnt++;
+        }
+        sb.append(cnt - 1);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob1026() throws IOException {
         int N = Integer.parseInt(br.readLine());
         int A[] = new int[N];
