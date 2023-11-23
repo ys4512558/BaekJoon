@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -10,6 +8,26 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob2217() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int arr[] = new int[N];
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+            map.put(arr[i], map.containsKey(arr[i]) ? map.get(arr[i])+1 : 1);
+        }
+        Arrays.sort(arr);
+        int max = 0;
+        for (int i = 0; i < N; ) {
+            max = Math.max(max, arr[i] * (N - i));
+            i += map.get(arr[i]);
+        }
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob1789() throws IOException {
