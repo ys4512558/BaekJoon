@@ -10,6 +10,32 @@ public class Main {
 
     }
 
+    private static void prob10162() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int A = 0;
+        int B = 0;
+        int C = 0;
+
+        while (N > 0){
+            if(N >= 300){
+                A++;
+                N -= 300;
+            } else if (N >= 60) {
+                B++;
+                N -= 60;
+            } else if (N >= 10) {
+                C++;
+                N -= 10;
+            } else {
+                N = -1;
+            }
+        }
+        sb.append(N == 0 ? (A + " " + B + " " + C) : -1);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob5585() throws IOException {
         int N = Integer.parseInt(br.readLine());
 
