@@ -1,4 +1,5 @@
 import java.io.*;
+import java.math.BigInteger;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -8,6 +9,16 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob1271() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        BigInteger N = new BigInteger(st.nextToken());
+        BigInteger M = new BigInteger(st.nextToken());
+        sb.append(N.divide(M)).append("\n").append(N.mod(M));
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob10953() throws IOException {
