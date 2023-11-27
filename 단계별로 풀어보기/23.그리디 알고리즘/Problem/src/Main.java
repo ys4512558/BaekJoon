@@ -10,6 +10,28 @@ public class Main {
 
     }
 
+    private static void prob1715() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        Queue<Long> queue = new PriorityQueue<>();
+        for (int i = 1; i <= N; i++) {
+            queue.add(Long.valueOf(br.readLine()));
+        }
+        int result = 0;
+
+        while (queue.size() > 1) {
+            long num1 = queue.poll();
+            long num2 = queue.poll();
+
+            result += (num1 + num2);
+            queue.add(num1 + num2);
+        }
+
+        sb.append(result);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob10162() throws IOException {
         int N = Integer.parseInt(br.readLine());
         int A = 0;
