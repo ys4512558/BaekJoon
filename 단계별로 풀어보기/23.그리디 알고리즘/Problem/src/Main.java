@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -10,6 +8,124 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob1715() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        Queue<Long> queue = new PriorityQueue<>();
+        for (int i = 1; i <= N; i++) {
+            queue.add(Long.valueOf(br.readLine()));
+        }
+        int result = 0;
+
+        while (queue.size() > 1) {
+            long num1 = queue.poll();
+            long num2 = queue.poll();
+
+            result += (num1 + num2);
+            queue.add(num1 + num2);
+        }
+
+        sb.append(result);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob10162() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int A = 0;
+        int B = 0;
+        int C = 0;
+
+        while (N > 0){
+            if(N >= 300){
+                A++;
+                N -= 300;
+            } else if (N >= 60) {
+                B++;
+                N -= 60;
+            } else if (N >= 10) {
+                C++;
+                N -= 10;
+            } else {
+                N = -1;
+            }
+        }
+        sb.append(N == 0 ? (A + " " + B + " " + C) : -1);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob5585() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        int money = 1000 - N;
+        int cnt = 0;
+        while (money > 0) {
+            if (money >= 500) {
+                money -= 500;
+                cnt++;
+            } else if (money >= 100) {
+                money -= 100;
+                cnt++;
+            } else if (money >= 50) {
+                money -= 50;
+                cnt++;
+            } else if (money >= 10) {
+                money -= 10;
+                cnt++;
+            } else if (money >= 5) {
+                money -= 5;
+                cnt++;
+            } else {
+                money -= 1;
+                cnt++;
+            }
+        }
+        sb.append(cnt);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob2217() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        int arr[] = new int[N];
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+            map.put(arr[i], map.containsKey(arr[i]) ? map.get(arr[i])+1 : 1);
+        }
+        Arrays.sort(arr);
+        int max = 0;
+        for (int i = 0; i < N; ) {
+            max = Math.max(max, arr[i] * (N - i));
+            i += map.get(arr[i]);
+        }
+        sb.append(max);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob1789() throws IOException {
+        long N = Long.parseLong(br.readLine());
+        long sum = N;
+        long cnt = 0;
+
+        for (int i = 1; ; i++) {
+            if (sum < 0) {
+                break;
+            }
+            sum -= i;
+            cnt++;
+        }
+        sb.append(cnt - 1);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob1026() throws IOException {
