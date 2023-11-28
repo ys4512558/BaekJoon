@@ -9,7 +9,7 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
-
+        int N = Integer.parseInt(br.readLine());
     }
     private static void prob18110() throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
