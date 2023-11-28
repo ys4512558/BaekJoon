@@ -10,6 +10,28 @@ public class Main {
 
     }
 
+    private static void prob10250() throws IOException {
+        int T = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < T; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
+            int H = Integer.parseInt(st.nextToken());
+            st.nextToken();
+            int N = Integer.parseInt(st.nextToken());
+
+            if (N % H == 0) {
+                sb.append((H * 100) + (N / H)).append('\n');
+
+            } else {
+                sb.append(((N % H) * 100) + ((N / H) + 1)).append('\n');
+            }
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob10953() throws IOException {
         int T = Integer.parseInt(br.readLine());
         for (int i = 0; i < T; i++) {
