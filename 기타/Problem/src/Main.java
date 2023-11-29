@@ -9,8 +9,34 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
-        int N = Integer.parseInt(br.readLine());
+
     }
+
+    private static void prob2530() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int h = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int s = Integer.parseInt(st.nextToken());
+
+        int sec = Integer.parseInt(br.readLine());
+        s += sec;
+        if(s >= 60){
+            m += s / 60;
+            s %= 60;
+        }
+        if(m >= 60){
+            h += m / 60;
+            m %= 60;
+        }
+        if(h >= 24){
+            h %= 24;
+        }
+        sb.append(h + " ").append(m + " ").append(s);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob18110() throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
