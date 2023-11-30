@@ -9,7 +9,16 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
+        prob2338();
+    }
 
+    private static void prob2338() throws IOException {
+        BigInteger A = new BigInteger(br.readLine());
+        BigInteger B = new BigInteger(br.readLine());
+        sb.append(A.add(B)+"\n").append(A.subtract(B)+"\n").append(A.multiply(B));
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob2530() throws IOException {
