@@ -9,7 +9,14 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
-        prob2338();
+        prob7287();
+    }
+
+    private static void prob7287() throws IOException {
+        sb.append("258").append("\n").append("ys4512558");
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob2338() throws IOException {

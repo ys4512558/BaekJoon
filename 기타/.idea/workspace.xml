@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="952a8618-4fc5-462e-b027-76bf4ce495d7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problem/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Problem/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../단계별로 풀어보기/19.재귀/Problem/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../단계별로 풀어보기/19.재귀/Problem/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../단계별로 풀어보기/20.백트래킹/Problem/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../단계별로 풀어보기/20.백트래킹/Problem/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +12,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2TmPlEXLIX6iSG90DjKCBePeeW5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,7 +26,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/ys451/OneDrive/바탕 화면/코딩테스트/백준/기타/Problem",
+    "last_opened_file_path": "C:/Users/승철/Desktop/코딩테스트/백준/BaekJoon/기타/Problem",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -46,6 +43,7 @@
       <updated>1691645431512</updated>
       <workItem from="1691645432489" duration="22000" />
       <workItem from="1694679384619" duration="94000" />
+      <workItem from="1701006371716" duration="19000" />
     </task>
     <servers />
   </component>
