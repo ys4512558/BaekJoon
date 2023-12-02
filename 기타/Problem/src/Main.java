@@ -9,7 +9,22 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
-        prob7287();
+
+    }
+
+    private static void prob10808() throws IOException {
+        int[] cnts = new int[26];
+        String str = br.readLine();
+
+        for (int i = 0; i < str.length(); i++) {
+            cnts[str.charAt(i)-97]++;
+        }
+        for (int i = 0; i < 26; i++) {
+            sb.append(cnts[i]).append(" ");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob7287() throws IOException {
