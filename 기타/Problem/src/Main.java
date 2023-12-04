@@ -9,7 +9,23 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
-        prob2338();
+    }
+
+    private static void prob2441() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (j >= i) {
+                    sb.append("*");
+                } else {
+                    sb.append(" ");
+                }
+            }
+            sb.append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob2338() throws IOException {
