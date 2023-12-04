@@ -26,6 +26,29 @@ public class Main {
         bw.write(sb.toString());
         bw.flush();
         bw.close();
+
+    }
+
+    private static void prob10808() throws IOException {
+        int[] cnts = new int[26];
+        String str = br.readLine();
+
+        for (int i = 0; i < str.length(); i++) {
+            cnts[str.charAt(i)-97]++;
+        }
+        for (int i = 0; i < 26; i++) {
+            sb.append(cnts[i]).append(" ");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
+    private static void prob7287() throws IOException {
+        sb.append("258").append("\n").append("ys4512558");
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob2338() throws IOException {
