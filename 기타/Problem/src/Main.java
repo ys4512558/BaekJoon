@@ -12,6 +12,21 @@ public class Main {
 
     }
 
+    private static void prob2752() throws IOException {
+        int arr[] = new int[3];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        arr[0] = Integer.parseInt(st.nextToken());
+        arr[1] = Integer.parseInt(st.nextToken());
+        arr[2] = Integer.parseInt(st.nextToken());
+
+        Arrays.sort(arr);
+        sb.append(arr[0] + " ").append(arr[1] + " ").append(arr[2]);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob13752() throws IOException {
         int N = Integer.parseInt(br.readLine());
         for (int i = 0; i < N; i++) {
