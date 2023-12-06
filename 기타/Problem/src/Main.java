@@ -9,6 +9,21 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob13752() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        for (int i = 0; i < N; i++) {
+            int K = Integer.parseInt(br.readLine());
+            for (int j = 0; j < K; j++) {
+                sb.append("=");
+            }
+            sb.append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob2441() throws IOException {
