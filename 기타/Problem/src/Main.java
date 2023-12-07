@@ -12,6 +12,20 @@ public class Main {
 
     }
 
+    private static void prob14489() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int A = Integer.parseInt(st.nextToken());
+        int B = Integer.parseInt(st.nextToken());
+
+        int C = Integer.parseInt(br.readLine());
+
+        int res = (A + B) - (2 * C) >= 0 ? (A + B) - (2 * C) : (A + B);
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob2752() throws IOException {
         int arr[] = new int[3];
 
