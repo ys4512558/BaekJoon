@@ -10,6 +10,23 @@ public class Main {
 
     }
 
+    private static void prob2864() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        String A = st.nextToken();
+        String B = st.nextToken();
+
+        int max = Integer.parseInt(A.replace("5", "6"))
+                + Integer.parseInt(B.replace("5", "6"));
+
+        int min = Integer.parseInt(A.replace("6", "5"))
+                + Integer.parseInt(B.replace("6", "5"));
+        sb.append(min + " ").append(max);
+
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob1715() throws IOException {
         int N = Integer.parseInt(br.readLine());
         Queue<Long> queue = new PriorityQueue<>();
