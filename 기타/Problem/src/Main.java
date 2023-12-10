@@ -12,6 +12,27 @@ public class Main {
 
     }
 
+    private static void prob1284() throws IOException {
+        String str;
+        while (!(str = br.readLine()).equals("0")) {
+            int res = 0;
+            for (int i = 0; i < str.length(); i++) {
+                char c = str.charAt(i);
+                if(c == '0'){
+                    res += 4;
+                } else if (c == '1') {
+                    res += 2;
+                } else {
+                    res += 3;
+                }
+            }
+            sb.append(res + str.length() + 1).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob3034() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
