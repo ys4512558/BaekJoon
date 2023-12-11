@@ -12,6 +12,27 @@ public class Main {
 
     }
 
+    private static void prob2576() throws IOException {
+        int arr[] = new int[7];
+        int sum = 0;
+        int min = 101;
+        for (int i = 0; i < 7; i++) {
+            int n = Integer.parseInt(br.readLine());
+            if (n % 2 != 0) {
+                sum += n;
+                min = Math.min(min, n);
+            }
+        }
+        if (min == 101) {
+            sb.append(-1);
+        } else {
+            sb.append(sum).append("\n").append(min);
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob1284() throws IOException {
         String str;
         while (!(str = br.readLine()).equals("0")) {
