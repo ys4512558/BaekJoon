@@ -12,6 +12,14 @@ public class Main {
 
     }
 
+    private static void prob1550() throws IOException {
+        int N = Integer.parseInt(br.readLine(), 16);
+        sb.append(N);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob2576() throws IOException {
         int arr[] = new int[7];
         int sum = 0;
