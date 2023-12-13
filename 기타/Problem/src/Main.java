@@ -12,6 +12,17 @@ public class Main {
 
     }
 
+    private static void prob5522() throws IOException {
+        int sum = 0;
+        for (int i = 0; i < 5; i++) {
+            sum += Integer.parseInt(br.readLine());
+        }
+        sb.append(sum);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob1550() throws IOException {
         int N = Integer.parseInt(br.readLine(), 16);
         sb.append(N);
