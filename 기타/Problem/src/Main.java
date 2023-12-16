@@ -13,6 +13,19 @@ public class Main {
 
     }
 
+    private static void prob25628() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int A = Integer.parseInt(st.nextToken());
+        int B = Integer.parseInt(st.nextToken());
+
+        int min = Math.min(A / 2, B);
+
+        sb.append(min);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob2754() throws IOException {
         String str = br.readLine();
         if (str.equals("A+")) {
