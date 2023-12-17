@@ -1,5 +1,4 @@
 import java.io.*;
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Stack;
 import java.util.StringTokenizer;
@@ -11,6 +10,18 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob14928() throws IOException {
+        String N = br.readLine();
+        long res = 0;
+        for (int i = 0; i < N.length(); i++) {
+            res = (res * 10 + (N.charAt(i) - '0')) % 20000303;
+        }
+        sb.append(res);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob25628() throws IOException {
