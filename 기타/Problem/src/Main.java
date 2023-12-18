@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Stack;
 import java.util.StringTokenizer;
+import java.math.BigInteger;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -10,6 +11,17 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob11365() throws IOException {
+        String input = "";
+        while (!(input = br.readLine()).equals("END")) {
+            StringBuilder temp = new StringBuilder(input);
+            sb.append(temp.reverse()).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob14928() throws IOException {
