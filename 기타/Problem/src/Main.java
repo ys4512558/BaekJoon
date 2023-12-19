@@ -13,6 +13,13 @@ public class Main {
 
     }
 
+    private static void prob23234() throws IOException {
+        sb.append("The world says hello!");
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob11365() throws IOException {
         String input = "";
         while (!(input = br.readLine()).equals("END")) {
