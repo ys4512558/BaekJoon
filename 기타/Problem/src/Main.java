@@ -13,6 +13,18 @@ public class Main {
 
     }
 
+    private static void prob23795() throws IOException {
+        int N = 0;
+        int sum = 0;
+        while ((N = Integer.parseInt(br.readLine()))!=-1){
+            sum += N;
+        }
+        sb.append(sum);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob23234() throws IOException {
         sb.append("The world says hello!");
         bw.write(sb.toString());
