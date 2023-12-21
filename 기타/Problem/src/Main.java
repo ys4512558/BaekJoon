@@ -13,6 +13,22 @@ public class Main {
 
     }
 
+    private static void prob11721() throws IOException {
+        String input = br.readLine();
+        int len = 0;
+        for (int i = 0; i < input.length(); i++) {
+            sb.append(input.charAt(i));
+            len++;
+            if (len == 10) {
+                sb.append("\n");
+                len = 0;
+            }
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob23795() throws IOException {
         int N = 0;
         int sum = 0;
