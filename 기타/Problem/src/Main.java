@@ -13,6 +13,24 @@ public class Main {
 
     }
 
+    private static void prob28113() throws IOException {
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int A = Integer.parseInt(st.nextToken());
+        int B = Integer.parseInt(st.nextToken());
+
+        if (A == N + (B - N)) {
+            sb.append("Anything");
+        } else if (A < N + (B - N)) {
+            sb.append("Bus");
+        } else {
+            sb.append("Subway");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob11721() throws IOException {
         String input = br.readLine();
         int len = 0;
