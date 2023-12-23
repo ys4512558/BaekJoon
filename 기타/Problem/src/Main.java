@@ -13,6 +13,18 @@ public class Main {
 
     }
 
+    private static void prob24883() throws IOException {
+        char c = br.readLine().charAt(0);
+        if(c == 'N' || c == 'n'){
+            sb.append("Naver D2");
+        } else {
+            sb.append("Naver Whale");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob28113() throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
