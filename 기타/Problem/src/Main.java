@@ -13,6 +13,25 @@ public class Main {
 
     }
 
+    private static void prob26766() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < N; i++) {
+            sb.append(" @@@   @@@ \n" +
+                    "@   @ @   @\n" +
+                    "@    @    @\n" +
+                    "@         @\n" +
+                    " @       @ \n" +
+                    "  @     @  \n" +
+                    "   @   @   \n" +
+                    "    @ @    \n" +
+                    "     @     \n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob9085() throws IOException {
         int T = Integer.parseInt(br.readLine());
 
