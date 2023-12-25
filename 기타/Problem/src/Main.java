@@ -13,6 +13,23 @@ public class Main {
 
     }
 
+    private static void prob9085() throws IOException {
+        int T = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < T; i++) {
+            int N = Integer.parseInt(br.readLine());
+            int sum = 0;
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                sum += Integer.parseInt(st.nextToken());
+            }
+            sb.append(sum).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob24883() throws IOException {
         char c = br.readLine().charAt(0);
         if(c == 'N' || c == 'n'){
