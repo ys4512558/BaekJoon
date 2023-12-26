@@ -13,6 +13,14 @@ public class Main {
 
     }
 
+    private static void prob15000() throws IOException {
+        String input = br.readLine();
+        sb.append(input.toUpperCase());
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob26766() throws IOException {
         int N = Integer.parseInt(br.readLine());
 
