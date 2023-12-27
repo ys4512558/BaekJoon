@@ -30,6 +30,15 @@ public class Main {
 
     }
 
+    private static void prob9655() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        sb.append(N % 2 == 0 ? "CY" : "SK");
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob11055() throws IOException {
         int N = Integer.parseInt(br.readLine());
 
