@@ -10,7 +10,21 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
+        double W = Double.parseDouble(br.readLine());
+        double H = Double.parseDouble(br.readLine());
 
+        double BMI = W / (H * H);
+
+        if(BMI > 25){
+            sb.append("Overweight");
+        } else if (BMI < 18.5) {
+            sb.append("Underweight");
+        } else {
+            sb.append("Normal weight");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob15000() throws IOException {
