@@ -10,6 +10,10 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob6825() throws IOException {
         double W = Double.parseDouble(br.readLine());
         double H = Double.parseDouble(br.readLine());
 
