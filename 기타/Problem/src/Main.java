@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.util.*;
 import java.math.BigInteger;
 
 public class Main {
@@ -11,6 +9,33 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+    }
+
+    private static void prob10845() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        Deque<Integer> deque = new ArrayDeque<>();
+
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            String input = st.nextToken();
+            if (input.equals("push")) {
+                deque.add(Integer.valueOf(st.nextToken()));
+            } else if (input.equals("pop")) {
+                sb.append(deque.isEmpty() ? -1 : deque.poll()).append("\n");
+            } else if (input.equals("size")) {
+                sb.append(deque.size()).append("\n");
+            } else if (input.equals("empty")) {
+                sb.append(deque.isEmpty() ? 1 : 0).append("\n");
+            } else if (input.equals("front")) {
+                sb.append(deque.isEmpty() ? -1 : deque.peekFirst()).append("\n");
+            } else if (input.equals("back")) {
+                sb.append(deque.isEmpty() ? -1 : deque.peekLast()).append("\n");
+            }
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob6825() throws IOException {
