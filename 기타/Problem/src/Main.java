@@ -11,6 +11,16 @@ public class Main {
 
     }
 
+    private static void prob11719() throws IOException {
+        String input = "";
+        while ((input = br.readLine()) != null) {
+            sb.append(input).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob10845() throws IOException {
         int N = Integer.parseInt(br.readLine());
 
