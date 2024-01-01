@@ -11,6 +11,23 @@ public class Main {
 
     }
 
+    private static void prob2442() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        for (int i = 1; i <= N; i++) {
+            for (int j = i; j < N; j++) {
+                sb.append(" ");
+            }
+            for (int j = 0; j < 2 * i - 1; j++) {
+                sb.append("*");
+            }
+            sb.append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob11719() throws IOException {
         String input = "";
         while ((input = br.readLine()) != null) {
