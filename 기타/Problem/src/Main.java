@@ -8,7 +8,16 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
+    }
 
+    private static void prob30030() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        double tax = (double) N / 11 * 10;
+        sb.append((int) tax);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob2442() throws IOException {
