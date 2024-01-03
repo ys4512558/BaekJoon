@@ -8,6 +8,26 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
+
+    }
+
+    private static void prob8958() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        for (int i = 0; i < N; i++) {
+            String input = br.readLine();
+            int sum = 0;
+            int score[] = new int[input.length()];
+            score[0] = input.charAt(0) == 'O' ? 1 : 0;
+            sum += score[0];
+            for (int j = 1; j < input.length(); j++) {
+                score[j] = input.charAt(j) == 'O' ? score[j - 1] + 1 : 0;
+                sum += score[j];
+            }
+            sb.append(sum).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob30030() throws IOException {
