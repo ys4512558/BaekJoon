@@ -27,6 +27,48 @@ public class Main {
 
     }
 
+    private static void prob11725() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+        Map<Integer, ArrayList<Integer>> map = new TreeMap<>();
+        int parent[] = new int[N];
+
+        for (int i = 1; i <= N; i++) {
+            map.put(i, new ArrayList<>());
+        }
+
+        for (int i = 0; i < N - 1; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int A = Integer.parseInt(st.nextToken());
+            int B = Integer.parseInt(st.nextToken());
+
+            map.get(A).add(B);
+            map.get(B).add(A);
+        }
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(1);
+        parent[0] = 1;
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+
+            ArrayList<Integer> childs = map.get(cur);
+
+            for (int i = 0; i < childs.size(); i++) {
+                int child = childs.get(i);
+                if (parent[child - 1] == 0) {
+                    parent[child - 1] = cur;
+                    queue.add(child);
+                }
+            }
+        }
+
+        for (int i = 1; i < N; i++) {
+            sb.append(parent[i]).append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+    }
+
     private static void prob11403() throws IOException {
         int N = Integer.parseInt(br.readLine());
 

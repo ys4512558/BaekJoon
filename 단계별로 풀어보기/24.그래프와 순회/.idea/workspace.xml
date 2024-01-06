@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9b1e84e5-2436-4efd-825e-9557b3c5fd89" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problem/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Problem/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +27,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/BaekJoon/단계별로 풀어보기/24.그래프와 순회/Problem",
+    "last_opened_file_path": "C:/Users/승철/Desktop/코딩테스트/백준/BaekJoon/단계별로 풀어보기/24.그래프와 순회/Problem",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -40,6 +41,7 @@
       <updated>1696494950865</updated>
       <workItem from="1696494951807" duration="148000" />
       <workItem from="1696994843507" duration="25000" />
+      <workItem from="1704552632770" duration="79000" />
     </task>
     <servers />
   </component>
