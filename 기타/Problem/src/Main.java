@@ -28,6 +28,34 @@ public class Main {
         bw.write(sb.toString());
         bw.flush();
         bw.close();
+
+    }
+
+    private static void prob2446() throws IOException {
+        int N = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < N-1; i++) {
+            for (int j = 0; j < i; j++) {
+                sb.append(" ");
+            }
+            for (int j = 0; j < 2 * (N - i) - 1; j++) {
+                sb.append("*");
+            }
+            sb.append("\n");
+        }
+
+        for (int i = 1; i <= N; i++) {
+            for (int j = i; j < N; j++) {
+                sb.append(" ");
+            }
+            for (int j = 0; j < 2 * i - 1; j++) {
+                sb.append("*");
+            }
+            sb.append("\n");
+        }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     private static void prob30030() throws IOException {
